@@ -15,6 +15,7 @@ interface TreeStateType {
   dim: number;
   displayIndex: number[];
   isSmallScreen: boolean;
+  restartedAt: number;
 }
 
 interface TreeContextType {
@@ -29,6 +30,7 @@ const INITIAL_STATE: TreeStateType = {
   dim: 0,
   displayIndex: [0],
   isSmallScreen: false,
+  restartedAt: 0,
 };
 
 export const TreeContext = createContext<TreeContextType>({
@@ -82,9 +84,9 @@ export default function TreeContextProvider({
   };
 
   const handleWindowResize = () => {
+    calcDim();
     setState((s) => {
-      calcDim();
-      return { ...s, displayIndex: [0] };
+      return { ...s, displayIndex: [0], restartedAt: new Date().getTime() };
     });
   };
 

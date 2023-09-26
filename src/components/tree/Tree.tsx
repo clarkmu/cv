@@ -6,7 +6,7 @@ import { WithTreeContext, useTreeContext } from "./context/TreeContext";
 
 function TreeComponent() {
   const {
-    state: { dim, displayIndex, isSmallScreen },
+    state: { dim, displayIndex, isSmallScreen, restartedAt },
     branches,
     containerRef,
   } = useTreeContext();
@@ -33,7 +33,7 @@ function TreeComponent() {
           displayIndex.map((i) => (
             <BranchContextProvider
               dim={dim}
-              key={`tree-${i}-${dim}`}
+              key={`tree-${i}-${dim}-${restartedAt}`}
               // dim={dim}
               strokeStyle={branchColors[i]}
               i={i}
