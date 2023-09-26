@@ -10,6 +10,7 @@ import React, {
 } from "react";
 
 import { Branch, branchColors, generateBranches } from "../branching";
+import { usePrevious } from "@uidotdev/usehooks";
 
 interface TreeStateType {
   dim: number;
@@ -52,19 +53,27 @@ export default function TreeContextProvider({
 }): JSX.Element {
   const [state, setState] = useState<TreeStateType>(INITIAL_STATE);
 
+  const previousDim = usePrevious(state.dim);
+
   const containerRef = useRef(null);
 
   const branches = generateBranches(state.dim / 2);
 
   const calcDim = () => {
     if (!containerRef.current) {
-      return;
+      return 0;
     }
 
     const curr: HTMLDivElement = containerRef.current;
     const w = curr.offsetWidth;
     const h = curr.offsetHeight;
     const dim = Math.floor(h < w ? h : w);
+    // setState((s) => ({ ...s, dim, isSmallScreen: dim < 768 }));
+    return dim;
+  };
+
+  const setDim = () => {
+    const dim = calcDim();
     setState((s) => ({ ...s, dim, isSmallScreen: dim < 768 }));
   };
 
@@ -84,14 +93,19 @@ export default function TreeContextProvider({
   };
 
   const handleWindowResize = () => {
-    calcDim();
-    setState((s) => {
-      return { ...s, displayIndex: [0], restartedAt: new Date().getTime() };
-    });
+    const dim = calcDim();
+
+    //mobile safari triggers window.resize onScroll...cool
+    if (dim !== previousDim) {
+      setDim();
+      setState((s) => {
+        return { ...s, displayIndex: [0], restartedAt: new Date().getTime() };
+      });
+    }
   };
 
   useEffect(() => {
-    calcDim();
+    setDim();
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", handleWindowResize);
     // eslint-disable-next-line
