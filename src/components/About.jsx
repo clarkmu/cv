@@ -12,7 +12,7 @@ export default function About() {
             designing, developing, and deploying robust pipelines and
             applications in collarboration with scientific staff and end-users.
           </p>
-          <p>Designs and whiteboards ideas using Figma.</p>
+          <p>Designs UI and whiteboards ideas using Figma.</p>
           <p>
             Develops web applications using NextJS + Tailwind and Cypress for
             e2e testing.

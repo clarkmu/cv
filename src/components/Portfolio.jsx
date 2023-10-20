@@ -170,33 +170,34 @@ const cards = [
     ),
   },
   {
-    title: "2D Gravity Effect",
+    title: "Visual Effects",
     body: "Making a scene with Three.js",
     backgroundImage: gravityBG,
     content: (
       <>
         <p>
-          This visual effect is a showcase of my hobby interest in visualization
-          and physics engines.
+          I enjoy creating visual effects to retain my foundational math skills.
         </p>
         <p>
-          It was originally part of an{" "}
+          The intro effect of this page is modeled after a phylogenetic tree
+          being animated on an HTML canvas. I wanted the tree to be centered
+          around my name in the middle of the page, so I used polar coordinates
+          to work outward and layer more branches. The mostly finished version
+          of this can be found at{" "}
           <a
-            href="https://m.apkpure.com/clarkmu-live-wallpaper/come.ClarkMU.Michael.LWP"
+            href="https://codesandbox.io/s/clever-christian-w2pwtc?file=/src/App.tsx"
             className="underline cursor-pointer"
             target="_BLANK"
             rel="noreferrer"
           >
-            Android live wallpaper
-          </a>{" "}
-          I made many years ago <small>(no longer on Play Store)</small>.
+            this code sand box
+          </a>
         </p>
         <p>
-          I have also tinkered with Unity and Blender to check out XR
-          development.
-        </p>
-        <p>
-          View this effect on{" "}
+          This 2D "gravity" simulation is a remnant from an Android Live
+          Wallpaper I created many years ago. I translated it from Java to
+          Javascript and used the D3 data visualization library. View the code
+          for this background gravity effect on{" "}
           <a
             href="https://codesandbox.io/s/three-js-2d-gravity-effect-96cu7?file=/src/App.js"
             className="underline cursor-pointer"
@@ -205,6 +206,16 @@ const cards = [
           >
             code sandbox
           </a>
+          . I created an article about it over at{" "}
+          <a
+            href="https://observablehq.com/@clarkmu/2d-gravity"
+            className="underline cursor-pointer"
+            target="_BLANK"
+            rel="noreferrer"
+          >
+            Observable
+          </a>{" "}
+          along with a few other items from the live wallpaper.
         </p>
       </>
     ),
