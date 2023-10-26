@@ -17,9 +17,11 @@ import ogvbg from "../images/ogv-bg.png";
 import epitopesBG from "../images/epitope-bg.png";
 import gravityBG from "../images/gravity-effect.gif";
 
-const ZoomImg = ({ src, alt }) => (
+import EpitopesERD from "../images/epitopes-ERD.svg";
+
+const ZoomImg = ({ src, alt, className = "" }) => (
   <Zoom>
-    <img src={src} alt={alt} className="w-full" />
+    <img src={src} alt={alt} className={`w-full ${className}`} />
   </Zoom>
 );
 
@@ -83,67 +85,32 @@ const cards = [
     ),
   },
   {
-    title: "Outgrowth Virus Dating",
-    body: "Collaborative work to continue research.",
-    backgroundImage: ogvbg,
-    content: (
-      <>
-        <p>
-          A request was made to automate the compute-intensive processing of
-          another pipeline (GitHub/veg/ogv-dating).
-        </p>
-        <ZoomImg alt="OGV Whiteboard" src={OGVWhiteboard} />
-        <p>
-          I started by mapping out the Input/Output required for processing.
-          This was around the time that Figma introduced washi tape to FigJam.
-        </p>
-        <p>
-          Collaboration with the pipeline creator was neccesarry to fine-tune
-          the requirements we had for the output. Team effort spanned across 3
-          different universities on a range of +-8 timezones.
-        </p>
-        <p>
-          <a
-            href="https://primer-id.org/ogv"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Website*
-          </a>
-        </p>
-        <p>
-          <a
-            href="https://github.com/clarkmu/ogv-dating"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Code Repository*
-          </a>
-        </p>
-        <p className="!text-sm">
-          *Note: this process has since been merged into the Primer-ID platform
-        </p>
-      </>
-    ),
-  },
-  {
     title: "Epitope Analysis Tool",
     body: "A grant proposal prototype.",
     backgroundImage: epitopesBG,
     content: (
       <>
         <p>
-          This application was made as a prototype to visually assist in a grant
-          application.
+          This application was made as the prototype of a grant application
+          (2023).
+        </p>
+        <p>
+          The initial phase can be seen below. We have viral antibody
+          information that is useful for epidemologists to visually compare. A
+          page was needed to filter available patients and their sequences.
         </p>
         <ZoomImg src={EpitopesWhiteboard} alt="Epitopes Whiteboard" />
         <p>
-          At this stage, many typical components of a web application can be
-          foregone to balance cost and time for projects that may or may not get
-          funded. Omitting a database and static hosting on GitHub Pages helped
-          reduce cost and turnaround time for this prototype.
+          A solid understanding of the data structure was laid out before
+          development began.
+        </p>
+        <ZoomImg src={EpitopesERD} alt="Epitopic App ERD" />
+        <p>
+          At this early conceptual stage, many typical components of a web
+          application can be foregone to balance cost and time for projects that
+          may or may not get funded. Omitting a database and static hosting on
+          GitHub Pages helped reduce cost and turnaround time for this
+          prototype.
         </p>
         <ZoomImg src={EpitopesInterface} alt="Epitopes Interface" />
         <p>
@@ -165,6 +132,54 @@ const cards = [
           >
             Code Repository
           </a>
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Outgrowth Virus Dating",
+    body: "Collaborative work to continue research.",
+    backgroundImage: ogvbg,
+    content: (
+      <>
+        <p>
+          This useful pipeline (GitHub/veg/ogv-dating) sat stagnant and hard to
+          use for researchers. Details were missing such as specific library
+          versions and unnoted I/O details. I pooled together all of the
+          requirements into an easy to use process.
+        </p>
+        <ZoomImg alt="OGV Whiteboard" src={OGVWhiteboard} />
+        <p>
+          This worklow was added into Primer ID processing on the on-campus
+          cluster server for its intensive computational requirements.
+        </p>
+        <p>
+          Collaboration with the creator was neccesarry to fine-tune the
+          requirements we had for this pipeline. Team effort spanned across 3
+          universities on a range of &plusmn;8 timezones.
+        </p>
+        <p>
+          <a
+            href="https://primer-id.org/ogv"
+            className="underline cursor-pointer"
+            target="_BLANK"
+            rel="noreferrer"
+          >
+            Website
+          </a>
+        </p>
+        <p>
+          <a
+            href="https://github.com/clarkmu/ogv-dating"
+            className="underline cursor-pointer"
+            target="_BLANK"
+            rel="noreferrer"
+          >
+            Code Repository*
+          </a>
+        </p>
+        <p className="!text-sm">
+          *This process has since been merged into the Primer-ID platform
         </p>
       </>
     ),
@@ -376,18 +391,21 @@ const cards = [
   //   ),
   // },
   {
-    title: "Publications",
-    body: "Research that I have been graciously been cited in.",
+    title: "Cited Publications",
+    body: "Research that I have been graciously been add as a co-author.",
     backgroundColor: "rgb(110, 155, 160)",
     content: (
       <ol className="ml-4 text-base gap-4 flex flex-col">
         <li>
           Zhou S, Hill CS, <b>Clark MU</b>, Sheahan TP, Baric R, Swanstrom R.
           <br />
-          Primer ID Next-Generation Sequencing for the Analysis of a Broad
-          Spectrum Antiviral Induced Transition Mutations and Errors Rates in a
-          Coronavirus Genome. Bio Protoc. 2021 Mar 5;11(5):e3938. doi:
-          10.21769/BioProtoc.3938. eCollection 2021 Mar 5.
+          <u>
+            Primer ID Next-Generation Sequencing for the Analysis of a Broad
+            Spectrum Antiviral Induced Transition Mutations and Errors Rates in
+            a Coronavirus Genome.
+          </u>{" "}
+          Bio Protoc. 2021 Mar 5;11(5):e3938. doi: 10.21769/BioProtoc.3938.
+          eCollection 2021 Mar 5.
           <br />
           PMID: 33796612
         </li>
@@ -396,11 +414,13 @@ const cards = [
           S, Cressman A, <b>Clark M</b>, Skelly T, Kelkar H, Veluvolu U, Jones
           C, Eron J, Cohen M, Nelson JAE, Swanstrom R, Dennis AM.
           <br />
-          Near Real-Time Identification of Recent Human Immunodeficiency Virus
-          Transmissions, Transmitted Drug Resistance Mutations, and Transmission
-          Networks by Multiplexed Primer ID-Next-Generation Sequencing in North
-          Carolina. J Infect Dis. 2021 Mar 3;223(5):876-884. doi:
-          10.1093/infdis/jiaa417.
+          <u>
+            Near Real-Time Identification of Recent Human Immunodeficiency Virus
+            Transmissions, Transmitted Drug Resistance Mutations, and
+            Transmission Networks by Multiplexed Primer ID-Next-Generation
+            Sequencing in North Carolina.
+          </u>{" "}
+          J Infect Dis. 2021 Mar 3;223(5):876-884. doi: 10.1093/infdis/jiaa417.
           <br />
           PMID: 32663847
         </li>
@@ -408,10 +428,12 @@ const cards = [
           Shuntai Zhou, Collin S. Hill, Ean Spielvogel, <b>Michael U. Clark</b>,
           Michael G. Hudgens, Ronald Swanstrom
           <br />
-          Unique Molecular Identifiers and Multiplexing Amplicons Maximize the
-          Utility of Deep Sequencing To Critically Assess Population Diversity
-          in RNA Viruses. ACS Infectious Diseases Article ASAP. DOI:
-          10.1021/acsinfecdis.2c00319
+          <u>
+            Unique Molecular Identifiers and Multiplexing Amplicons Maximize the
+            Utility of Deep Sequencing To Critically Assess Population Diversity
+            in RNA Viruses.
+          </u>{" "}
+          ACS Infectious Diseases Article ASAP. DOI: 10.1021/acsinfecdis.2c00319
           <br />
           PMID: 36326446
         </li>

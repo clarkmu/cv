@@ -11,24 +11,25 @@ export default function Contact() {
       <TitleCard title="Contact" bg="bg-primary" showSocial={false} />
       <div className="flex-1 bg-bg">
         <div className="flex flex-col h-screen">
-          <div className="flex-0 p-8 flex flex-col gap-8 m-8">
+          <div className="flex-1 p-8 flex flex-col gap-8 m-8">
             <p className="font-bold">
               I am always seeking new opportunities to leverage these skills and
               contribute to cutting-edge projects in scientific research and
               computational biology.
             </p>
+            <p>Please feel free to reach out at any of the links provided,</p>
             <p>
-              Feel free to reach out at any of the links provided,
+              Yours professionally,
               <br />
               Michael Clark
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-8">
               <a href={resume} download="Resume clarkmu.com.pdf">
                 <Button>Download Resume</Button>
               </a>
             </div>
           </div>
-          <div className="flex-1 flex items-center justify-center">
+          <div className="flex-0 mb-8 flex items-center justify-center">
             <SocialIcons noPadding={true} />
           </div>
         </div>
