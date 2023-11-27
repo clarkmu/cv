@@ -19,12 +19,12 @@ export default function About() {
             development and Cypress for e2e testing.
           </p>
           <p>
-            Deploys applications utilizing Google Cloud Platform and
+            Deploys applications to Google Cloud Platform and
             OpenShift/Kubernetes.
           </p>
           <p>
-            Integrates workload managers such as Slurm and Snakemake for the
-            scaling of compute-intensive tasks.
+            Integrates workload managers such as Slurm and Snakemake for
+            compute-intensive tasks.
           </p>
         </div>
       </div>

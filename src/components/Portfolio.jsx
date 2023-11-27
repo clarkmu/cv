@@ -5,10 +5,12 @@ import TitleCard from "./TitleCard";
 import PortfolioCard from "./PortfolioCard";
 
 import phyloFlowchart from "../images/phylo-flowchart.png";
-// import notesyFigma from "../images/notesy-figma.png";
-// import notesyPromo from "../images/notesy-promo.jpg";
+import notesyFigma from "../images/notesy-figma.png";
+import notesyPromo from "../images/notesy-promo.jpg";
+import notesyBG from "../images/notesy-background.png";
 import primerIDInterface from "../images/primer-id-interface.png";
 // import musicVideo from "../images/music-app-video.mp4";
+import ZoomScrollBG from "../images/zoom-scroll-background.png";
 import OGVWhiteboard from "../images/ogv-whiteboard.png";
 import EpitopesWhiteboard from "../images/epitope-whiteboard.png";
 import EpitopesInterface from "../images/epitope-interface.png";
@@ -34,15 +36,13 @@ const cards = [
       <>
         <p>
           A free and open platform that allows researchers from all over the
-          world to process Next Generation Sequencing data.
+          world to process Next Generation Sequencing data. This application was
+          created in conjunction with the GitHub/ViralSeq/viral_seq pipelines.
         </p>
         <p>
-          This application was created in conjunction with the
-          GitHub/ViralSeq/viral_seq pipelines. I designed this application using
-          UNC's color palette. I developed this application as a UI to the CLI
-          available to the pipeline. I deployed the backend process to the
-          on-campus cluster server after edits were made to the pipelines to run
-          in this environment.
+          I managed this platform from start to finish. Designed using UNC's
+          color palette. Developed using Next.js + Tailwind CSS. Deployed to
+          Google App Engine. Processing happens on the on-campus cluster server.
         </p>
         <ZoomImg alt="Primer ID Interface" src={primerIDInterface} />
         <p>
@@ -91,8 +91,9 @@ const cards = [
     content: (
       <>
         <p>
-          This application was made as the prototype of a grant application
-          (2023).
+          I created this prototype application to visually assist a grant
+          application. An epidemiologist wants to pool together resources across
+          fields to visualize data in new ways.
         </p>
         <p>
           The initial phase can be seen below. We have viral antibody
@@ -108,9 +109,8 @@ const cards = [
         <p>
           At this early conceptual stage, many typical components of a web
           application can be foregone to balance cost and time for projects that
-          may or may not get funded. Omitting a database and static hosting on
-          GitHub Pages helped reduce cost and turnaround time for this
-          prototype.
+          may or may not get funded. Omitting a database and static hosting
+          helped reduce cost and turnaround time for this prototype.
         </p>
         <ZoomImg src={EpitopesInterface} alt="Epitopes Interface" />
         <p>
@@ -145,12 +145,12 @@ const cards = [
         <p>
           This useful pipeline (GitHub/veg/ogv-dating) sat stagnant and hard to
           use for researchers. Details were missing such as specific library
-          versions and unnoted I/O details. I pooled together all of the
-          requirements into an easy to use process.
+          versions and unnoted I/O details. I pooled together all of the CLI
+          requirements into an easy to use interface.
         </p>
         <ZoomImg alt="OGV Whiteboard" src={OGVWhiteboard} />
         <p>
-          This worklow was added into Primer ID processing on the on-campus
+          This worklow was integrated into Primer ID processing on the on-campus
           cluster server for its intensive computational requirements.
         </p>
         <p>
@@ -180,6 +180,63 @@ const cards = [
         </p>
         <p className="!text-sm">
           *This process has since been merged into the Primer-ID platform
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "notesy.app",
+    body: "A note taking app with a gorgeous interface using Next.js + Tailwind",
+    backgroundImage: notesyBG,
+    content: (
+      <>
+        <p>
+          I set out on a mission to fine-tune my UI-design and Figma skills.
+          Over a few weeks I created a note taking app, borrowing heavily from
+          current platform designs and features.
+        </p>
+        <Zoom>
+          <img
+            alt="Notesy Figma Design"
+            className="notesy-figma"
+            src={notesyFigma}
+          />
+        </Zoom>
+        <p>
+          I focused on a simple, easy-to-use interface. A dropdown menu is a
+          great way to offer lots of functionality but keep the page clean and
+          simple.
+        </p>
+        <p>
+          Additional points of development includes:
+          <ol className="ml-4 list-disc">
+            <li>DraftJS saved to MongoDB to retain notes</li>
+            <li>Websockets for shared editing</li>
+            <li>React useContext and custom hooks</li>
+            <li>List virtualization</li>
+            <li>Deployed to GCP App Engine</li>
+          </ol>
+        </p>
+        <p></p>
+        <p>
+          App can be found at{" "}
+          <a
+            href="https://www.notesy.app/"
+            target="_BLANK"
+            rel="noreferrer"
+            className="underline cursor-pointer"
+          >
+            notesy.app
+          </a>
+        </p>
+        <p>
+          <Zoom>
+            <img
+              alt="Promo Graphic"
+              className="notesy-promo"
+              src={notesyPromo}
+            />
+          </Zoom>
         </p>
       </>
     ),
@@ -235,89 +292,39 @@ const cards = [
       </>
     ),
   },
-  // {
-  //   title: "react-zoom-scroll-effect",
-  //   body: "An NPM package to make scrolling more dynamic.",
-  //   backgroundImage: "zoom-scroll-background",
-  //   content: (
-  //     <>
-  //       <p>
-  //         I noticed this behavior out in the wild and found that there were no
-  //         packages or css utilities that take advantage of scrolling. So I took
-  //         3 days to make this really fun React component into an NPM package.
-  //       </p>
-  //       <p>
-  //         There are a few variations, parameters, and uses for this package so
-  //         this was a prime candidate for StoryBook testing.
-  //       </p>
-  //       <p>
-  //         The package and documentation can be found{" "}
-  //         <a
-  //           href="https://www.npmjs.com/package/react-scroll-zoom-effect"
-  //           target="_BLANK"
-  //           rel="noreferrer"
-  //         >
-  //           here
-  //         </a>
-  //         .
-  //       </p>
-  //     </>
-  //   ),
-  // },
-  // {
-  //   title: "notesy.app",
-  //   body: "A note taking app with a gorgeous interface using Next.js + Tailwind",
-  //   backgroundImage: "notesy-background",
-  //   content: (
-  //     <>
-  //       <p>
-  //         With two weeks of downtime, I wanted to see how much I could
-  //         accomplish on a time-crunch. I paid special attention to the design
-  //         stage in Figma to keep the layout simple, organized, and visually
-  //         appealing.
-  //       </p>
-  //       <Zoom>
-  //         <img
-  //           alt="Notesy Figma Design"
-  //           className="notesy-figma"
-  //           src={notesyFigma}
-  //         />
-  //       </Zoom>
-  //       <p>
-  //         Development consisted of DraftJS, useContext, websockets, list
-  //         virtualization, and deployed to Google App Engine.
-  //       </p>
-  //       <p>
-  //         With more time on this project, I would add a few starry eyed features
-  //         such as
-  //         <ul style={{ paddingLeft: "2rem" }}>
-  //           <li>Note sharing by creating unique share url's</li>
-  //           <li>Extend note editor with more functionality</li>
-  //           <li>Offline Support</li>
-  //           <li>
-  //             Handle loading state better with skeletons instead of loading view
-  //             overlay
-  //           </li>
-  //         </ul>
-  //       </p>
-  //       <p>
-  //         App can be found at{" "}
-  //         <a href="https://www.notesy.app/" target="_BLANK">
-  //           notesy.app
-  //         </a>
-  //       </p>
-  //       <p>
-  //         <Zoom>
-  //           <img
-  //             alt="Promo Graphic"
-  //             className="notesy-promo"
-  //             src={notesyPromo}
-  //           />
-  //         </Zoom>
-  //       </p>
-  //     </>
-  //   ),
-  // },
+  {
+    title: "react-zoom-scroll-effect",
+    body: "An NPM package to make scrolling more dynamic.",
+    backgroundImage: ZoomScrollBG,
+    content: (
+      <>
+        <p>
+          I noticed this behavior out in the wild and found that there were no
+          packages or css utilities that take advantage of scrolling. So I took
+          3 days to make this really fun React component into an NPM package.
+        </p>
+        <p>
+          There are a few variations, parameters, and uses for this package so
+          this was a prime candidate for StoryBook testing.
+        </p>
+        <p>
+          I used Rollout to minify and package, as is common with NPM package
+          development.
+        </p>
+        <p>
+          The package and documentation can be found{" "}
+          <a
+            href="https://www.npmjs.com/package/react-scroll-zoom-effect"
+            target="_BLANK"
+            rel="noreferrer"
+          >
+            here
+          </a>
+          .
+        </p>
+      </>
+    ),
+  },
   // {
   //   title: "Sheet Music Creator",
   //   body: "An interface for creating custom sheet music.",
@@ -392,7 +399,7 @@ const cards = [
   // },
   {
     title: "Cited Publications",
-    body: "Research that I have been graciously been add as a co-author.",
+    body: "Research publications related to the projects above that I have co-authored.",
     backgroundColor: "rgb(110, 155, 160)",
     content: (
       <ol className="ml-4 text-base gap-4 flex flex-col">
