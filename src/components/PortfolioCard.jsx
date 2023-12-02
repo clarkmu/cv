@@ -22,14 +22,10 @@ export default function PortfolioCard({
       >
         <div
           className={`${containerHeight} flex py-12 ${centerOnClickClassname}`}
-          style={
-            !!backgroundColor && !backgroundImage
-              ? { background: backgroundColor }
-              : {
-                  background: `url(${backgroundImage})`,
-                  backgroundSize: "cover",
-                }
-          }
+          style={{
+            background: backgroundColor || `url(${backgroundImage})`,
+            backgroundSize: "cover",
+          }}
         >
           <div
             className={`p-8 flex flex-col gap-4 bg-bg rounded-3xl w-full`}

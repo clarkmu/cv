@@ -3,7 +3,6 @@ import React from "react";
 import TitleCard from "./TitleCard";
 import SocialIcons from "./SocialIcons";
 import Button from "./Button";
-import resume from "../images/resume.pdf";
 
 export default function Contact() {
   return (
@@ -24,7 +23,7 @@ export default function Contact() {
               Michael Clark
             </p>
             <div className="flex justify-center mt-8">
-              <a href={resume} download="Resume clarkmu.com.pdf">
+              <a href="/resume.pdf" download="Resume clarkmu.com.pdf">
                 <Button>Download Resume</Button>
               </a>
             </div>

@@ -2,14 +2,21 @@ import React from "react";
 
 const iconSize = "w-[3rem] h-[3rem]";
 
+const Anchor = ({ href, children }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className="hover:rounded-lg hover:mx-4 transition-all hover:scale-125"
+  >
+    {children}
+  </a>
+);
+
 export default function SocialIcons({ noPadding = false }) {
   return (
     <div className={`flex gap-8 ${!noPadding ? "pb-10" : ""}`}>
-      <a
-        href="https://www.upwork.com/fl/clarkmu?s=1110580755107926016"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <Anchor href="https://www.upwork.com/fl/clarkmu?s=1110580755107926016">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           enableBackground="new 0 0 2500 2500"
@@ -26,8 +33,8 @@ export default function SocialIcons({ noPadding = false }) {
             fill="#fff"
           />
         </svg>
-      </a>
-      <a href="https://github.com/clarkmu" target="_blank" rel="noreferrer">
+      </Anchor>
+      <Anchor href="https://github.com/clarkmu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="2500"
@@ -42,12 +49,8 @@ export default function SocialIcons({ noPadding = false }) {
             <path d="M47.755 181.634c-.28.633-1.278.823-2.185.389-.925-.416-1.445-1.28-1.145-1.916.275-.652 1.273-.834 2.196-.396.927.415 1.455 1.287 1.134 1.923M54.027 187.23c-.608.564-1.797.302-2.604-.589-.834-.889-.99-2.077-.373-2.65.627-.563 1.78-.3 2.616.59.834.899.996 2.08.36 2.65M58.33 194.39c-.782.543-2.06.034-2.849-1.1-.781-1.133-.781-2.493.017-3.038.792-.545 2.05-.055 2.85 1.07.78 1.153.78 2.513-.019 3.069M65.606 202.683c-.699.77-2.187.564-3.277-.488-1.114-1.028-1.425-2.487-.724-3.258.707-.772 2.204-.555 3.302.488 1.107 1.026 1.445 2.496.7 3.258M75.01 205.483c-.307.998-1.741 1.452-3.185 1.028-1.442-.437-2.386-1.607-2.095-2.616.3-1.005 1.74-1.478 3.195-1.024 1.44.435 2.386 1.596 2.086 2.612M85.714 206.67c.036 1.052-1.189 1.924-2.705 1.943-1.525.033-2.758-.818-2.774-1.852 0-1.062 1.197-1.926 2.721-1.951 1.516-.03 2.758.815 2.758 1.86M96.228 206.267c.182 1.026-.872 2.08-2.377 2.36-1.48.27-2.85-.363-3.039-1.38-.184-1.052.89-2.105 2.367-2.378 1.508-.262 2.857.355 3.049 1.398" />
           </g>
         </svg>
-      </a>
-      <a
-        href="https://linkedin.com/in/clarkmu"
-        target="_blank"
-        rel="noreferrer"
-      >
+      </Anchor>
+      <Anchor href="https://linkedin.com/in/clarkmu">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -58,8 +61,8 @@ export default function SocialIcons({ noPadding = false }) {
           <title>LinkedIn Profile</title>
           <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
         </svg>
-      </a>
-      <a href="mailto:clarkmu@gmail.com" target="_blank" rel="noreferrer">
+      </Anchor>
+      <Anchor href="mailto:clarkmu@gmail.com">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="2500"
@@ -91,7 +94,7 @@ export default function SocialIcons({ noPadding = false }) {
             />
           </g>
         </svg>
-      </a>
+      </Anchor>
     </div>
   );
 }

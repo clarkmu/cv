@@ -17,7 +17,11 @@ function whitelistCenterDivOnClick(e, ref) {
 export default function CenterDivOnClick({ children }) {
   const ref = useRef(null);
   return (
-    <div ref={ref} onClick={(e) => whitelistCenterDivOnClick(e, ref)}>
+    <div
+      ref={ref}
+      onClick={(e) => whitelistCenterDivOnClick(e, ref)}
+      role="button"
+    >
       {children}
     </div>
   );

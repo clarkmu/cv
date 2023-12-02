@@ -1,9 +1,9 @@
 import React from "react";
 import SocialIcons from "./SocialIcons";
-import { WithSpriteContext, useSpriteContext } from "../context/SpriteContext";
+// import { WithSpriteContext, useSpriteContext } from "../context/SpriteContext";
 
-function TitleCard({ title, bg, showSocial = true }) {
-  const { Canvas } = useSpriteContext();
+export default function TitleCard({ title, bg, showSocial = true }) {
+  // const { Canvas } = useSpriteContext();
 
   const isPortfolio = title === "Portfolio";
   const overlaysClass = isPortfolio ? "z-10 rounded-lg m-0 p-0 " : "";
@@ -37,4 +37,4 @@ function TitleCard({ title, bg, showSocial = true }) {
   );
 }
 
-export default WithSpriteContext(TitleCard);
+// export default WithSpriteContext(TitleCard);

@@ -4,26 +4,9 @@ import Zoom from "react-medium-image-zoom";
 import TitleCard from "./TitleCard";
 import PortfolioCard from "./PortfolioCard";
 
-import phyloFlowchart from "../images/phylo-flowchart.png";
-import notesyFigma from "../images/notesy-figma.png";
-import notesyPromo from "../images/notesy-promo.jpg";
-import notesyBG from "../images/notesy-background.png";
-import primerIDInterface from "../images/primer-id-interface.png";
-// import musicVideo from "../images/music-app-video.mp4";
-import ZoomScrollBG from "../images/zoom-scroll-background.png";
-import OGVWhiteboard from "../images/ogv-whiteboard.png";
-import EpitopesWhiteboard from "../images/epitope-whiteboard.png";
-import EpitopesInterface from "../images/epitope-interface.png";
-import primerIDBG from "../images/primer-id.png";
-import ogvbg from "../images/ogv-bg.png";
-import epitopesBG from "../images/epitope-bg.png";
-import gravityBG from "../images/gravity-effect.gif";
-
-import EpitopesERD from "../images/epitopes-ERD.svg";
-
 const ZoomImg = ({ src, alt, className = "" }) => (
   <Zoom>
-    <img src={src} alt={alt} className={`w-full ${className}`} />
+    <img src={src} alt={alt} className={`w-full ${className}`} loading="lazy" />
   </Zoom>
 );
 
@@ -31,7 +14,7 @@ const cards = [
   {
     title: "Primer ID",
     body: "An NIH-funded sequencing platform.",
-    backgroundImage: primerIDBG,
+    backgroundImage: "/primer-id.png",
     content: (
       <>
         <p>
@@ -44,13 +27,16 @@ const cards = [
           color palette. Developed using Next.js + Tailwind CSS. Deployed to
           Google App Engine. Processing happens on the on-campus cluster server.
         </p>
-        <ZoomImg alt="Primer ID Interface" src={primerIDInterface} />
+        <ZoomImg alt="Primer ID Interface" src="/primer-id-interface.png" />
         <p>
           Complex parameters can be set to configure processing in the UI. Users
           then upload files which can be multiple gigabytes in size using a
           resumable upload to a protected GCP bucket.
         </p>
-        <ZoomImg alt="Flowchart for Primer-ID project" src={phyloFlowchart} />
+        <ZoomImg
+          alt="Flowchart for Primer-ID project"
+          src="/phylo-flowchart.png"
+        />
         <p>
           Files and parameters are then collected by a cron job on the on-campus
           cluster server and inserted into a workload manager queue (Slurm) to
@@ -87,32 +73,32 @@ const cards = [
   {
     title: "Epitope Analysis Tool",
     body: "A grant proposal prototype.",
-    backgroundImage: epitopesBG,
+    backgroundImage: "/epitope-bg.png",
     content: (
       <>
         <p>
           I created this prototype application to visually assist a grant
-          application. An epidemiologist wants to pool together resources across
-          fields to visualize data in new ways.
+          application. An epidemiologist wants to create an interdisciplinary
+          tool between immunologists and virologists.
         </p>
         <p>
           The initial phase can be seen below. We have viral antibody
           information that is useful for epidemologists to visually compare. A
           page was needed to filter available patients and their sequences.
         </p>
-        <ZoomImg src={EpitopesWhiteboard} alt="Epitopes Whiteboard" />
+        <ZoomImg src="/epitope-whiteboard.png" alt="Epitopes Whiteboard" />
         <p>
           A solid understanding of the data structure was laid out before
           development began.
         </p>
-        <ZoomImg src={EpitopesERD} alt="Epitopic App ERD" />
+        <ZoomImg src="/epitopes-ERD.svg" alt="Epitopic App ERD" />
         <p>
           At this early conceptual stage, many typical components of a web
           application can be foregone to balance cost and time for projects that
           may or may not get funded. Omitting a database and static hosting
           helped reduce cost and turnaround time for this prototype.
         </p>
-        <ZoomImg src={EpitopesInterface} alt="Epitopes Interface" />
+        <ZoomImg src="/epitope-interface.png" alt="Epitopes Interface" />
         <p>
           <a
             href="https://viralseq.github.io/epitopes/"
@@ -139,7 +125,7 @@ const cards = [
   {
     title: "Outgrowth Virus Dating",
     body: "Collaborative work to continue research.",
-    backgroundImage: ogvbg,
+    backgroundImage: "/ogv-bg.png",
     content: (
       <>
         <p>
@@ -148,7 +134,7 @@ const cards = [
           versions and unnoted I/O details. I pooled together all of the CLI
           requirements into an easy to use interface.
         </p>
-        <ZoomImg alt="OGV Whiteboard" src={OGVWhiteboard} />
+        <ZoomImg alt="OGV Whiteboard" src="/ogv-whiteboard.png" />
         <p>
           This worklow was integrated into Primer ID processing on the on-campus
           cluster server for its intensive computational requirements.
@@ -187,7 +173,7 @@ const cards = [
   {
     title: "notesy.app",
     body: "A note taking app with a gorgeous interface using Next.js + Tailwind",
-    backgroundImage: notesyBG,
+    backgroundImage: "/notesy-background.png",
     content: (
       <>
         <p>
@@ -195,13 +181,7 @@ const cards = [
           Over a few weeks I created a note taking app, borrowing heavily from
           current platform designs and features.
         </p>
-        <Zoom>
-          <img
-            alt="Notesy Figma Design"
-            className="notesy-figma"
-            src={notesyFigma}
-          />
-        </Zoom>
+        <ZoomImg alt="Notesy Figma Design" src="/notesy-figma.png" />
         <p>
           I focused on a simple, easy-to-use interface. A dropdown menu is a
           great way to offer lots of functionality but keep the page clean and
@@ -230,13 +210,11 @@ const cards = [
           </a>
         </p>
         <p>
-          <Zoom>
-            <img
-              alt="Promo Graphic"
-              className="notesy-promo"
-              src={notesyPromo}
-            />
-          </Zoom>
+          <ZoomImg
+            alt="Promo Graphic"
+            className="notesy-promo"
+            src="/notesy-promo.jpg"
+          />
         </p>
       </>
     ),
@@ -244,7 +222,7 @@ const cards = [
   {
     title: "Visual Effects",
     body: "Making a scene with Three.js",
-    backgroundImage: gravityBG,
+    backgroundImage: "/gravity-effect.gif",
     content: (
       <>
         <p>
@@ -295,7 +273,7 @@ const cards = [
   {
     title: "react-zoom-scroll-effect",
     body: "An NPM package to make scrolling more dynamic.",
-    backgroundImage: ZoomScrollBG,
+    backgroundImage: "/zoom-scroll-background.png",
     content: (
       <>
         <p>

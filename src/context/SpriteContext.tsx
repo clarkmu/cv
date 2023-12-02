@@ -8,8 +8,6 @@ import React, {
   useState,
 } from "react";
 
-import SpriteImg from "../images/corona-sprite.png";
-
 /**
  * sprite animation ideas:
  *
@@ -81,7 +79,7 @@ class Sprite {
     this.ctx = ctx;
 
     this.img = new Image();
-    this.img.src = SpriteImg;
+    this.img.src = "/corona-sprite.png";
 
     this.spriteWidth = 200;
     this.spriteHeight = 200;
