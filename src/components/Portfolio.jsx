@@ -213,7 +213,7 @@ const cards = [
           <ZoomImg
             alt="Promo Graphic"
             className="notesy-promo"
-            src="/notesy-promo.jpg"
+            src="/notesy-promo.webp"
           />
         </div>
       </>
