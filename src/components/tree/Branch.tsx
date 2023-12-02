@@ -10,7 +10,7 @@ export default function Branch() {
   return (
     <canvas
       ref={ref}
-      className="absolute inset-0 overflow-visible"
+      className="absolute inset-0"
       width={dim}
       height={dim}
       style={{
