@@ -14,7 +14,7 @@ const cards = [
   {
     title: "Primer ID",
     body: "An NIH-funded sequencing platform.",
-    backgroundImage: "/primer-id.png",
+    backgroundImage: "/primer-id.webp",
     content: (
       <>
         <p>
@@ -27,7 +27,7 @@ const cards = [
           color palette. Developed using Next.js + Tailwind CSS. Deployed to
           Google App Engine. Processing happens on the on-campus cluster server.
         </p>
-        <ZoomImg alt="Primer ID Interface" src="/primer-id-interface.png" />
+        <ZoomImg alt="Primer ID Interface" src="/primer-id-interface.webp" />
         <p>
           Complex parameters can be set to configure processing in the UI. Users
           then upload files which can be multiple gigabytes in size using a
@@ -35,7 +35,7 @@ const cards = [
         </p>
         <ZoomImg
           alt="Flowchart for Primer-ID project"
-          src="/phylo-flowchart.png"
+          src="/phylo-flowchart.webp"
         />
         <p>
           Files and parameters are then collected by a cron job on the on-campus
@@ -73,7 +73,7 @@ const cards = [
   {
     title: "Epitope Analysis Tool",
     body: "A grant proposal prototype.",
-    backgroundImage: "/epitope-bg.png",
+    backgroundImage: "/epitope-bg.webp",
     content: (
       <>
         <p>
@@ -86,7 +86,7 @@ const cards = [
           information that is useful for epidemologists to visually compare. A
           page was needed to filter available patients and their sequences.
         </p>
-        <ZoomImg src="/epitope-whiteboard.png" alt="Epitopes Whiteboard" />
+        <ZoomImg src="/epitope-whiteboard.webp" alt="Epitopes Whiteboard" />
         <p>
           A solid understanding of the data structure was laid out before
           development began.
@@ -98,7 +98,7 @@ const cards = [
           may or may not get funded. Omitting a database and static hosting
           helped reduce cost and turnaround time for this prototype.
         </p>
-        <ZoomImg src="/epitope-interface.png" alt="Epitopes Interface" />
+        <ZoomImg src="/epitope-interface.webp" alt="Epitopes Interface" />
         <p>
           <a
             href="https://viralseq.github.io/epitopes/"
@@ -125,7 +125,7 @@ const cards = [
   {
     title: "Outgrowth Virus Dating",
     body: "Collaborative work to continue research.",
-    backgroundImage: "/ogv-bg.png",
+    backgroundImage: "/ogv-bg.webp",
     content: (
       <>
         <p>
@@ -134,7 +134,7 @@ const cards = [
           versions and unnoted I/O details. I pooled together all of the CLI
           requirements into an easy to use interface.
         </p>
-        <ZoomImg alt="OGV Whiteboard" src="/ogv-whiteboard.png" />
+        <ZoomImg alt="OGV Whiteboard" src="/ogv-whiteboard.webp" />
         <p>
           This worklow was integrated into Primer ID processing on the on-campus
           cluster server for its intensive computational requirements.
@@ -173,7 +173,7 @@ const cards = [
   {
     title: "notesy.app",
     body: "A note taking app with a gorgeous interface using Next.js + Tailwind",
-    backgroundImage: "/notesy-background.png",
+    backgroundImage: "/notesy-background.webp",
     content: (
       <>
         <p>
@@ -181,7 +181,7 @@ const cards = [
           Over a few weeks I created a note taking app, borrowing heavily from
           current platform designs and features.
         </p>
-        <ZoomImg alt="Notesy Figma Design" src="/notesy-figma.png" />
+        <ZoomImg alt="Notesy Figma Design" src="/notesy-figma.webp" />
         <p>
           I focused on a simple, easy-to-use interface. A dropdown menu is a
           great way to offer lots of functionality but keep the page clean and
@@ -273,7 +273,7 @@ const cards = [
   {
     title: "react-zoom-scroll-effect",
     body: "An NPM package to make scrolling more dynamic.",
-    backgroundImage: "/zoom-scroll-background.png",
+    backgroundImage: "/zoom-scroll-background.webp",
     content: (
       <>
         <p>

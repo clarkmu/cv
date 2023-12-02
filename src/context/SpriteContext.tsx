@@ -79,7 +79,7 @@ class Sprite {
     this.ctx = ctx;
 
     this.img = new Image();
-    this.img.src = "/corona-sprite.png";
+    this.img.src = "/corona-sprite.webp";
 
     this.spriteWidth = 200;
     this.spriteHeight = 200;
