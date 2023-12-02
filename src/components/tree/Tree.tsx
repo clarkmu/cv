@@ -3,24 +3,18 @@ import Branch from "./Branch";
 import { branchColors } from "./branching";
 import BranchContextProvider from "./context/BranchContext";
 import { WithTreeContext, useTreeContext } from "./context/TreeContext";
+import useDim from "./context/useDim";
 
 function TreeComponent() {
   const {
-    state: { dim, displayIndex, isSmallScreen, restartedAt },
+    state: { displayIndex, isSmallScreen, restartedAt },
     branches,
-    containerRef,
   } = useTreeContext();
 
-  const tempDim =
-    window.innerHeight < window.innerWidth
-      ? window.innerHeight
-      : window.innerWidth;
+  const [dim] = useDim();
 
   return (
-    <div
-      ref={containerRef}
-      className="flex justify-center items-center h-screen w-screen"
-    >
+    <div className="flex justify-center items-center h-screen w-screen">
       <div className="absolute left-0 top-0 h-screen w-1/2 bg-secondary"></div>
       <div
         className={`absolute right-0 top-0 h-screen w-1/2 ${
@@ -30,16 +24,15 @@ function TreeComponent() {
       <div
         className="relative overflow-hidden bg-bg rounded-full"
         style={{
-          width: (dim || tempDim / 2) + "px",
-          height: (dim || tempDim / 2) + "px",
+          width: dim + "px",
+          height: dim + "px",
         }}
       >
         {!!dim &&
           displayIndex.map((i) => (
             <BranchContextProvider
-              dim={dim}
               key={`tree-${i}-${dim}-${restartedAt}`}
-              // dim={dim}
+              dim={dim}
               strokeStyle={branchColors[i]}
               i={i}
               branches={branches[i]}

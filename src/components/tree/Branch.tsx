@@ -1,11 +1,9 @@
 import React from "react";
 import { useBranchContext } from "./context/BranchContext";
-import { useTreeContext } from "./context/TreeContext";
+import useDim from "./context/useDim";
 
 export default function Branch() {
-  const {
-    state: { dim },
-  } = useTreeContext();
+  const [dim] = useDim();
 
   const { ref, baseRotation } = useBranchContext();
 
