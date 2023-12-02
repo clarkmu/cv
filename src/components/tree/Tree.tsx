@@ -11,6 +11,11 @@ function TreeComponent() {
     containerRef,
   } = useTreeContext();
 
+  const tempDim =
+    window.innerHeight < window.innerWidth
+      ? window.innerHeight
+      : window.innerWidth;
+
   return (
     <div
       ref={containerRef}
@@ -25,8 +30,8 @@ function TreeComponent() {
       <div
         className="relative overflow-hidden bg-bg rounded-full"
         style={{
-          width: dim + "px",
-          height: dim + "px",
+          width: (dim || tempDim / 2) + "px",
+          height: (dim || tempDim / 2) + "px",
         }}
       >
         {!!dim &&
