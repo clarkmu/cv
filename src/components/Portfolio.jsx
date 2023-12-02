@@ -187,7 +187,7 @@ const cards = [
           great way to offer lots of functionality but keep the page clean and
           simple.
         </p>
-        <p>
+        <div>
           Additional points of development includes:
           <ol className="ml-4 list-disc">
             <li>DraftJS saved to MongoDB to retain notes</li>
@@ -196,7 +196,7 @@ const cards = [
             <li>List virtualization</li>
             <li>Deployed to GCP App Engine</li>
           </ol>
-        </p>
+        </div>
         <p></p>
         <p>
           App can be found at{" "}
@@ -209,13 +209,13 @@ const cards = [
             notesy.app
           </a>
         </p>
-        <p>
+        <div>
           <ZoomImg
             alt="Promo Graphic"
             className="notesy-promo"
             src="/notesy-promo.jpg"
           />
-        </p>
+        </div>
       </>
     ),
   },

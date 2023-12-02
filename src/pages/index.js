@@ -10,6 +10,14 @@ const Contact = lazy(() => import("../components/Contact"));
 
 // inspired by: https://melaniedaveid.com/
 
+export function Head() {
+  return (
+    <>
+      <html lang="en"></html>
+    </>
+  );
+}
+
 export default function App() {
   return (
     <>

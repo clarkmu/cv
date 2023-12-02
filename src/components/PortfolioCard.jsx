@@ -34,7 +34,7 @@ export default function PortfolioCard({
             <h1 className="text-3xl font-bold whitespace-break-spaces m-0 p-0">
               {title}
             </h1>
-            <p className={expanded ? "underline" : ""}>{body}</p>
+            <div className={expanded ? "underline" : ""}>{body}</div>
             <div
               className={
                 "flex flex-col gap-4 " +

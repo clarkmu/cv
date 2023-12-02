@@ -20,7 +20,9 @@ export default function CenterDivOnClick({ children }) {
     <div
       ref={ref}
       onClick={(e) => whitelistCenterDivOnClick(e, ref)}
+      onKeyDown={(e) => whitelistCenterDivOnClick(e, ref)}
       role="button"
+      tabIndex={0}
     >
       {children}
     </div>
