@@ -22,7 +22,7 @@ function TreeComponent() {
         }`}
       ></div>
       <div
-        className="relative overflow-hidden bg-bg rounded-full"
+        className="relative overflow-hidden bg-bg rounded-full transition-all"
         style={{
           width: dim + "px",
           height: dim + "px",
