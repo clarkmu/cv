@@ -1,72 +1,151 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Zoom from "react-medium-image-zoom";
 
 import TitleCard from "./TitleCard";
 import PortfolioCard from "./PortfolioCard";
 
+const PortfolioCategories = {
+  RESEARCH: "Research",
+  FRONTEND: "Frontend",
+  BACKEND: "Backend",
+};
+
+const IFrame = ({ src, alt }) => (
+  <>
+    <iframe
+      src={`${src}#toolbar=0&navpanes=0&allowfullscreen=true&scrolling=yes`}
+      className="min-h-[50vh] border-4 border-black cursor-help focus:cursor-default"
+      title={alt}
+    />
+    <small>{alt}</small>
+  </>
+);
+
 const ZoomImg = ({ src, alt, className = "" }) => (
-  <Zoom>
-    <img src={src} alt={alt} className={`w-full ${className}`} loading="lazy" />
-  </Zoom>
+  <>
+    <Zoom>
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full ${className}`}
+        loading="lazy"
+        title={alt}
+      />
+    </Zoom>
+    <small>{alt}</small>
+  </>
+);
+
+const PortfolioAnchor = ({ href, text }) => (
+  <a
+    href={href}
+    rel="noreferrer"
+    target="_blank"
+    className="underline cursor-pointer hover:text-blue-300 transition-all"
+  >
+    {text || href}
+  </a>
+);
+
+const Code = ({ text }) => (
+  <code className="bg-gray-200 text-[#333] m-1 p-1 text-base">{text}</code>
 );
 
 const cards = [
+  /* RESEARCH */
   {
     title: "Primer ID",
     body: "An NIH-funded sequencing platform.",
     backgroundImage: "/primer-id.webp",
+    category: PortfolioCategories.RESEARCH,
     content: (
       <>
         <p>
           A free and open platform that allows researchers from all over the
-          world to process Next Generation Sequencing data. This application was
-          created in conjunction with the GitHub/ViralSeq/viral_seq pipelines.
+          world to process Next Generation Sequencing data for drug resistance,
+          sequence alignment, and outgrowth dating. This platform was created in
+          conjunction with the pipelines found at
+          <Code text="GitHub/ViralSeq/viral_seq" /> and{" "}
+          <Code text="GitHub/veg/ogv-dating" />.
         </p>
         <p>
-          I managed this platform from start to finish. Designed using UNC's
-          color palette. Developed using Next.js + Tailwind CSS. Deployed to
-          Google App Engine. Processing happens on the on-campus cluster server.
-        </p>
-        <ZoomImg alt="Primer ID Interface" src="/primer-id-interface.webp" />
-        <p>
-          Complex parameters can be set to configure processing in the UI. Users
-          then upload files which can be multiple gigabytes in size using a
-          resumable upload to a protected GCP bucket.
+          This platform consists of two main infrastructure components, a web
+          application for users to create a pipeline submission and a capable
+          backend server for running the compute-intensive pipelines.
         </p>
         <ZoomImg
-          alt="Flowchart for Primer-ID project"
-          src="/phylo-flowchart.webp"
+          alt="Primer ID infrastructure diagram."
+          src="/tcs-flowchart.webp"
         />
         <p>
-          Files and parameters are then collected by a cron job on the on-campus
-          cluster server and inserted into a workload manager queue (Slurm) to
-          await an environment in which a proper amount of memory and processing
-          power are available.
+          Files and parameters are created in the web app, which are then
+          collected by a cron job on the cluster server and inserted into a
+          workload manager queue (Slurm) to await an environment in which a
+          proper amount of memory and processing power are available. Once
+          results are ready, they are emailed to the user.
+        </p>
+        <ZoomImg
+          alt="Step 1/5 of configuring each sequence primer."
+          src="/primer-id-interface.webp"
+        />
+        <p>
+          Complex parameters can be set to configure processing in the UI. I
+          created a visually appealing way for users that have to go through
+          this form up to 4 times or more per submission. In the research world,
+          we very frequently use verification steps for them to check their work
+          for precision.
         </p>
         <p>
           A Docker setup process is available to replicate this workflow on
-          one's computer to develop and update these procedures.
+          one's own computer for replication studies and continued research.
         </p>
         <p>
-          <a
-            href="https://primer-id.org"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Website
-          </a>
+          I used UNC's color palette throughout the theme and developed using
+          Next.js + Tailwind CSS.
         </p>
         <p>
-          <a
+          <PortfolioAnchor href="https://primer-id.org" text="Website" />
+        </p>
+        <p>
+          <PortfolioAnchor
             href="https://github.com/clarkmu/primer-id"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Code Repository
-          </a>
+            text="Code Repository"
+          />
         </p>
+      </>
+    ),
+  },
+  {
+    title: "Phylodynamics",
+    body: "Representing HIV statistics for North Carolina.",
+    backgroundImage: "/phylo-background.webp",
+    category: PortfolioCategories.RESEARCH,
+    content: (
+      <>
+        <p>
+          This platform aids in the processesing of HIV sequences from all
+          tested cases in North Carolina. Both new and existing cases are
+          tracked, creating a phylogeny network.
+        </p>
+        <IFrame
+          src="/phylo-specimen.pdf"
+          alt="The input is a sample of the virus, and this is the output we generate
+          for every patient (PHI omitted)."
+        />
+        <p>
+          Processed data is handed off to a RedMine database, where a team at
+          the UNC School of Medicine pools and distributes findings. Findings
+          include sharing outbreak hotspots with the Department of Health and
+          Human Services so that they can ramp up public prevention as well as
+          providing the CDC with official case numbers for the state.
+        </p>
+        <p>
+          Similar to the Primer ID application, there is a web application that
+          relays information to the cluster server for compute-intense
+          processing. This UI utilizes virtualized lists, paginated data tables,
+          Google Charts, and cloud storage buckets.
+        </p>
+        <small>*Website is access protected and repo is private.</small>
       </>
     ),
   },
@@ -74,118 +153,180 @@ const cards = [
     title: "Epitope Analysis Tool",
     body: "A grant proposal prototype.",
     backgroundImage: "/epitope-bg.webp",
+    category: PortfolioCategories.RESEARCH,
     content: (
       <>
         <p>
-          I created this prototype application to visually assist a grant
-          application. An epidemiologist wants to create an interdisciplinary
-          tool between immunologists and virologists.
+          I created this prototype application to visually assist someone's
+          grant application. An epidemiologist wants to create an
+          interdisciplinary analysis tool between immunologists and virologists.
         </p>
         <p>
-          The initial phase can be seen below. We have viral antibody
-          information that is useful for epidemologists to visually compare. A
-          page was needed to filter available patients and their sequences.
+          The whiteboard of the initial concept can be seen below. We have viral
+          antibody information that is useful for epidemologists to visually
+          compare. A page was needed to filter available patients and their
+          sequences.
         </p>
-        <ZoomImg src="/epitope-whiteboard.webp" alt="Epitopes Whiteboard" />
-        <p>
-          A solid understanding of the data structure was laid out before
-          development began.
-        </p>
-        <ZoomImg src="/epitopes-ERD.svg" alt="Epitopic App ERD" />
+        <ZoomImg
+          src="/epitope-whiteboard.webp"
+          alt="Whiteboarding the main components of the application UI."
+        />
+        <p>A solid structure was defined before development began:</p>
+        <ZoomImg
+          src="/epitopes-ERD.svg"
+          alt="Clearly defining stored application data."
+        />
         <p>
           At this early conceptual stage, many typical components of a web
           application can be foregone to balance cost and time for projects that
           may or may not get funded. Omitting a database and static hosting
           helped reduce cost and turnaround time for this prototype.
         </p>
-        <ZoomImg src="/epitope-interface.webp" alt="Epitopes Interface" />
+        <ZoomImg
+          src="/epitope-interface.webp"
+          alt="The developed UI for this grant proposal to seek funding."
+        />
         <p>
-          <a
+          <PortfolioAnchor
             href="https://viralseq.github.io/epitopes/"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Website
-          </a>
+            text="Website"
+          />
         </p>
         <p>
-          <a
+          <PortfolioAnchor
             href="https://github.com/clarkmu/epitopes"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Code Repository
-          </a>
+            text="Code Repository"
+          />
         </p>
       </>
     ),
   },
   {
-    title: "Outgrowth Virus Dating",
-    body: "Collaborative work to continue research.",
-    backgroundImage: "/ogv-bg.webp",
+    title: "Cited Publications",
+    body: "Research publications related to the projects above that I have co-authored.",
+    backgroundColor: "rgb(110, 155, 160)",
+    category: PortfolioCategories.RESEARCH,
+    content: (
+      <ol className="ml-4 text-base gap-4 flex flex-col">
+        <li>
+          Zhou S, Hill CS, <b>Clark MU</b>, Sheahan TP, Baric R, Swanstrom R.
+          <br />
+          <u>
+            Primer ID Next-Generation Sequencing for the Analysis of a Broad
+            Spectrum Antiviral Induced Transition Mutations and Errors Rates in
+            a Coronavirus Genome.
+          </u>{" "}
+          Bio Protoc. 2021 Mar 5;11(5):e3938. doi: 10.21769/BioProtoc.3938.
+          eCollection 2021 Mar 5.
+          <br />
+          PMID: 33796612
+          <br />
+          <PortfolioAnchor href="https://pubmed.ncbi.nlm.nih.gov/33796612/" />
+        </li>
+        <li>
+          Zhou S, Sizemore S, Moeser M, Zimmerman S, Samoff E, Mobley V, Frost
+          S, Cressman A, <b>Clark M</b>, Skelly T, Kelkar H, Veluvolu U, Jones
+          C, Eron J, Cohen M, Nelson JAE, Swanstrom R, Dennis AM.
+          <br />
+          <u>
+            Near Real-Time Identification of Recent Human Immunodeficiency Virus
+            Transmissions, Transmitted Drug Resistance Mutations, and
+            Transmission Networks by Multiplexed Primer ID-Next-Generation
+            Sequencing in North Carolina.
+          </u>{" "}
+          J Infect Dis. 2021 Mar 3;223(5):876-884. doi: 10.1093/infdis/jiaa417.
+          <br />
+          PMID: 32663847
+          <br />
+          <PortfolioAnchor href="https://pubmed.ncbi.nlm.nih.gov/32663847/" />
+        </li>
+        <li>
+          Shuntai Zhou, Collin S. Hill, Ean Spielvogel, <b>Michael U. Clark</b>,
+          Michael G. Hudgens, Ronald Swanstrom
+          <br />
+          <u>
+            Unique Molecular Identifiers and Multiplexing Amplicons Maximize the
+            Utility of Deep Sequencing To Critically Assess Population Diversity
+            in RNA Viruses.
+          </u>{" "}
+          ACS Infectious Diseases Article ASAP. DOI: 10.1021/acsinfecdis.2c00319
+          <br />
+          PMID: 36326446
+          <br />
+          <PortfolioAnchor href="https://pubmed.ncbi.nlm.nih.gov/36326446/" />
+        </li>
+        <li>
+          Shuntai Zhou, Nathan Long, Matt Moeser, Collin S Hill, Erika Samoff,
+          Victoria Mobley, Simon Frost, Cara Bayer, Elizabeth Kelly, Annalea
+          Greifinger, Scott Shone, William Glover, <b>Michael Clark</b>, Joseph
+          Eron, Myron Cohen, Ronald Swanstrom, Ann M Dennis
+          <br />
+          <u>
+            Use of Next Generation Sequencing in a State-Wide Strategy of HIV-1
+            Surveillance: Impact of the SARS-CoV-2 Pandemic on HIV-1 Diagnosis
+            and Transmission
+          </u>{" "}
+          J Infect Dis. 2023 Jun 7 DOI: 10.1093/infdis/jiad211
+          <br />
+          PMID: 37283544
+          <br />
+          <PortfolioAnchor href="https://pubmed.ncbi.nlm.nih.gov/37283544/" />
+        </li>
+      </ol>
+    ),
+  },
+  /*  FRONTEND */
+  {
+    title: "Effects + Data Visualization",
+    body: "Making a scene with graphical frameworks.",
+    backgroundImage: "/gravity-effect.gif",
+    category: PortfolioCategories.FRONTEND,
     content: (
       <>
         <p>
-          This useful pipeline (GitHub/veg/ogv-dating) sat stagnant and hard to
-          use for researchers. Details were missing such as specific library
-          versions and unnoted I/O details. I pooled together all of the CLI
-          requirements into an easy to use interface.
-        </p>
-        <ZoomImg alt="OGV Whiteboard" src="/ogv-whiteboard.webp" />
-        <p>
-          This worklow was integrated into Primer ID processing on the on-campus
-          cluster server for its intensive computational requirements.
-        </p>
-        <p>
-          Collaboration with the creator was neccesarry to fine-tune the
-          requirements we had for this pipeline. Team effort spanned across 3
-          universities on a range of &plusmn;8 timezones.
+          Creating visual effects helps me retain my foundational math skills. I
+          have created a few articles at{" "}
+          <PortfolioAnchor
+            href="https://observablehq.com/@clarkmu"
+            text="Observable"
+          />{" "}
+          outlining some of the better visuals I have created, mostly items from
+          my old Android Live Wallpaper.
         </p>
         <p>
-          <a
-            href="https://primer-id.org/ogv"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Website
-          </a>
+          My latest example of data visualization is adding an output file to a
+          sequencing pipeline where I use HTML + Google Charts to display the
+          output in graphs and charts.
         </p>
-        <p>
-          <a
-            href="https://github.com/clarkmu/ogv-dating"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Code Repository*
-          </a>
-        </p>
-        <p className="!text-sm">
-          *This process has since been merged into the Primer-ID platform
-        </p>
+        <IFrame
+          src="https://storage.googleapis.com/tcs-dr-public/log.html"
+          alt="Viral sequences displayed as drug restistance mutations and their
+          recency."
+        />
       </>
     ),
   },
   {
     title: "notesy.app",
-    body: "A note taking app with a gorgeous interface using Next.js + Tailwind",
+    body: "A note taking app with a gorgeous interface using Next.js + Tailwind.",
     backgroundImage: "/notesy-background.webp",
+    category: PortfolioCategories.FRONTEND,
     content: (
       <>
         <p>
           I set out on a mission to fine-tune my UI-design and Figma skills.
-          Over a few weeks I created a note taking app, borrowing heavily from
-          current platform designs and features.
+          Over a few weeks I created a note taking app, borrowing the best ideas
+          from current writing platform designs and features.
         </p>
-        <ZoomImg alt="Notesy Figma Design" src="/notesy-figma.webp" />
+        <ZoomImg
+          alt="Using Figma to design an application before starting development."
+          src="/notesy-figma.webp"
+        />
         <p>
-          I focused on a simple, easy-to-use interface. A dropdown menu is a
-          great way to offer lots of functionality but keep the page clean and
-          simple.
+          I focused on a simple, easy-to-use interface. I created a marketing
+          page which outlines the application and its features. The onboarding
+          process is smooth and simple. I jam-packed the FAQ page with SEO-rich
+          content.
         </p>
         <div>
           Additional points of development includes:
@@ -200,73 +341,12 @@ const cards = [
         <p></p>
         <p>
           App can be found at{" "}
-          <a
-            href="https://www.notesy.app/"
-            target="_BLANK"
-            rel="noreferrer"
-            className="underline cursor-pointer"
-          >
-            notesy.app
-          </a>
+          <PortfolioAnchor href="https://www.notesy.app/" text="notesy.app" />
         </p>
-        <div>
-          <ZoomImg
-            alt="Promo Graphic"
-            className="notesy-promo"
-            src="/notesy-promo.webp"
-          />
-        </div>
-      </>
-    ),
-  },
-  {
-    title: "Visual Effects",
-    body: "Making a scene with Three.js",
-    backgroundImage: "/gravity-effect.gif",
-    content: (
-      <>
-        <p>
-          I enjoy creating visual effects to retain my foundational math skills.
-        </p>
-        <p>
-          The intro effect of this page is modeled after a phylogenetic tree
-          being animated on an HTML canvas. I wanted the tree to be centered
-          around my name in the middle of the page, so I used polar coordinates
-          to work outward and layer more branches. The mostly finished version
-          of this can be found at{" "}
-          <a
-            href="https://codesandbox.io/s/clever-christian-w2pwtc?file=/src/App.tsx"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            this code sand box
-          </a>
-        </p>
-        <p>
-          This 2D "gravity" simulation is a remnant from an Android Live
-          Wallpaper I created many years ago. I translated it from Java to
-          Javascript and used the D3 data visualization library. View the code
-          for this background gravity effect on{" "}
-          <a
-            href="https://codesandbox.io/s/three-js-2d-gravity-effect-96cu7?file=/src/App.js"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            code sandbox
-          </a>
-          . I created an article about it over at{" "}
-          <a
-            href="https://observablehq.com/@clarkmu/2d-gravity"
-            className="underline cursor-pointer"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            Observable
-          </a>{" "}
-          along with a few other items from the live wallpaper.
-        </p>
+        <ZoomImg
+          alt="The Notesy promo graphic used on app stores."
+          src="/notesy-promo.webp"
+        />
       </>
     ),
   },
@@ -274,6 +354,7 @@ const cards = [
     title: "react-zoom-scroll-effect",
     body: "An NPM package to make scrolling more dynamic.",
     backgroundImage: "/zoom-scroll-background.webp",
+    category: PortfolioCategories.FRONTEND,
     content: (
       <>
         <p>
@@ -282,70 +363,74 @@ const cards = [
           3 days to make this really fun React component into an NPM package.
         </p>
         <p>
-          There are a few variations, parameters, and uses for this package so
-          this was a prime candidate for StoryBook testing.
+          There are a few variations, parameters, and uses for this visual
+          feature so this was a prime candidate for StoryBook testing.
         </p>
         <p>
-          I used Rollout to minify and package, as is common with NPM package
-          development.
+          I used Rollout to minify and package, as it appeared to be the
+          tried-and-true option for NPM deployment.
         </p>
         <p>
           The package and documentation can be found{" "}
-          <a
+          <PortfolioAnchor
             href="https://www.npmjs.com/package/react-scroll-zoom-effect"
-            target="_BLANK"
-            rel="noreferrer"
-          >
-            here
-          </a>
+            text="here"
+          />
           .
         </p>
       </>
     ),
   },
-  // {
-  //   title: "Sheet Music Creator",
-  //   body: "An interface for creating custom sheet music.",
-  //   backgroundImage: "music-background",
-  //   content: (
-  //     <>
-  //       <p>
-  //         I collaborated with a team that creates a custom format of sheet music
-  //         intended for beginner students. They wanted to expand their efforts in
-  //         creating this sheet music and sought to automate and digitize the
-  //         process.
-  //       </p>
-  //       <p>
-  //         The only technical requirement from the client was that it had to be
-  //         installable on his workers laptops. Along with the other
-  //         specifications of this project, it turned out to be a great fit for a
-  //         Progressive Web App.
-  //       </p>
-  //       <video className="mini-video" controls>
-  //         <source src={musicVideo} type="video/mp4" />
-  //         Your browser does not support the video tag.
-  //       </video>
-  //       <small>
-  //         Main feature of application: a drag-and-drop interface for creating
-  //         the custom sheet music
-  //       </small>
-  //       <p>
-  //         My background with music helped to hit the ground running with this
-  //         team. I attended two years at MuziekSchool Roeselare, a music school
-  //         in Belgium for students of all ages, and ages ago I could converse
-  //         about music in English, Dutch, and French.
-  //       </p>
-  //       <p>
-  //         This application is not public, given the proprietary nature of this
-  //         format of sheet music.
-  //       </p>
-  //     </>
-  //   ),
-  // },
+  {
+    title: "Sheet Music Creator",
+    body: "An interface for creating custom sheet music.",
+    backgroundImage: "/music-app_bak.webp",
+    category: PortfolioCategories.FRONTEND,
+    content: (
+      <>
+        <p>
+          A platform to create a custom format of sheet music intended for
+          students with a focus on learning disabled students. I freelanced with
+          a non-technical team that wanted to expand their efforts in creating
+          this sheet music and sought to automate and digitize the process.
+        </p>
+        <ZoomImg src="pianotab-concept.webp" alt="The PianoTab Concept" />
+        <p>
+          The main technical requirement from the client was that it had to be
+          installable on the workers laptops. Along with the other
+          specifications of this project, it turned out to be a great fit for a
+          Progressive Web App.
+        </p>
+        <video className="mini-video" controls>
+          <source src="/music-app-video.mp4" type="video/mp4" />
+          <track src="" srcLang="en" kind="captions" label="unneccessary" />
+          Your browser does not support the video tag.
+        </video>
+        <small>
+          Main feature of application: a drag-and-drop interface for creating
+          the custom sheet music.
+        </small>
+        <p>
+          Development consisted of a React frontend with heavy usage of the NPM
+          drag-and-drop package <Code text="react-dnd" /> to edit tabs. Tab
+          objects stored in a MongoDB collection. Completed tabs were converted
+          to PDF and saved to a storage bucket for user viewing.
+        </p>
+        <p>
+          My background with music helped to hit the ground running with this
+          team. In my adult years I attended two years at MuziekSchool
+          Roeselare, a music school in Belgium for students of all ages, where I
+          learned to converse about music in English, Dutch, and French.
+        </p>
+        <small>*Website is access protected and repo is private.</small>
+      </>
+    ),
+  },
   // {
   //   title: "cannabis-calendar.com",
-  //   body: "A crop management SPA with static sharing pages.",
-  //   backgroundImage: "canna-background",
+  //   body: "A crop management app that uses all the Next.js features.",
+  //   backgroundImage: "/canna-app.webp",
+  //   category: PortfolioCategories.FRONTEND,
   //   content: (
   //     <>
   //       <p>
@@ -363,81 +448,161 @@ const cards = [
   //       </p>
   //       <p>
   //         App can be found{" "}
-  //         <a
+  //         <PortfolioAnchor
   //           href="https://www.cannabis-calendar.com"
-  //           target="_BLANK"
-  //           rel="noreferrer"
-  //         >
-  //           here
-  //         </a>
+  //           text="here"
+  //         />
   //         .
   //       </p>
   //     </>
   //   ),
   // },
+  /* BACKEND */
   {
-    title: "Cited Publications",
-    body: "Research publications related to the projects above that I have co-authored.",
-    backgroundColor: "rgb(110, 155, 160)",
+    title: "CaaS",
+    body: "My Kubernetes environments.",
+    backgroundColor: "#BF0A30",
+    category: PortfolioCategories.BACKEND,
     content: (
-      <ol className="ml-4 text-base gap-4 flex flex-col">
-        <li>
-          Zhou S, Hill CS, <b>Clark MU</b>, Sheahan TP, Baric R, Swanstrom R.
-          <br />
-          <u>
-            Primer ID Next-Generation Sequencing for the Analysis of a Broad
-            Spectrum Antiviral Induced Transition Mutations and Errors Rates in
-            a Coronavirus Genome.
-          </u>{" "}
-          Bio Protoc. 2021 Mar 5;11(5):e3938. doi: 10.21769/BioProtoc.3938.
-          eCollection 2021 Mar 5.
-          <br />
-          PMID: 33796612
-        </li>
-        <li>
-          Zhou S, Sizemore S, Moeser M, Zimmerman S, Samoff E, Mobley V, Frost
-          S, Cressman A, <b>Clark M</b>, Skelly T, Kelkar H, Veluvolu U, Jones
-          C, Eron J, Cohen M, Nelson JAE, Swanstrom R, Dennis AM.
-          <br />
-          <u>
-            Near Real-Time Identification of Recent Human Immunodeficiency Virus
-            Transmissions, Transmitted Drug Resistance Mutations, and
-            Transmission Networks by Multiplexed Primer ID-Next-Generation
-            Sequencing in North Carolina.
-          </u>{" "}
-          J Infect Dis. 2021 Mar 3;223(5):876-884. doi: 10.1093/infdis/jiaa417.
-          <br />
-          PMID: 32663847
-        </li>
-        <li>
-          Shuntai Zhou, Collin S. Hill, Ean Spielvogel, <b>Michael U. Clark</b>,
-          Michael G. Hudgens, Ronald Swanstrom
-          <br />
-          <u>
-            Unique Molecular Identifiers and Multiplexing Amplicons Maximize the
-            Utility of Deep Sequencing To Critically Assess Population Diversity
-            in RNA Viruses.
-          </u>{" "}
-          ACS Infectious Diseases Article ASAP. DOI: 10.1021/acsinfecdis.2c00319
-          <br />
-          PMID: 36326446
-        </li>
-      </ol>
+      <>
+        <p>
+          Many of my projects are containerized and documented for easy research
+          replication. This also makes it easier to manage deployment into a
+          Kubernetes cluster. I usually start with a template as diagrammed
+          below.
+        </p>
+        <ZoomImg
+          src="/k8s.webp"
+          alt="My K8s template when starting a new platform."
+        />
+        <p>
+          I started using OpenShift in version 1 before there was a higher level
+          developer view so I learned all of the administrator details related
+          to building an image, deploying a pod, and registering readiness
+          probes and health checks.
+        </p>
+        <p>
+          And what kind of developer would I be if I didn't automate backups of
+          all my databases to a storage volume.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "High Performance Computing",
+    body: "Cluster server experience.",
+    backgroundColor: "white",
+    category: PortfolioCategories.BACKEND,
+    content: (
+      <>
+        <p>
+          Working with researchers means cutting edge ideas requiring intense
+          computational power.
+        </p>
+        <p>
+          In one process that I have automated, users can upload 20+ files per
+          batch with each file being measured in gigabytes. Each file needs a
+          list of memory-intensive string operations performed on it. Running
+          these processes in sequence would further delay receiving results.
+          After ensuring these computations are parallelable, I queue them up
+          with a workload manager to execute.
+        </p>
+        <p>
+          These operations would clog up a normal server depending on its
+          performance capabilities. For less intense computations, this would be
+          ideal for serverless nodes (AWS lambdas).
+        </p>
+        <p>
+          Server usage requires crystal clear communication with IT department
+          to retain security regarding permissions, installations, and data I/O.
+        </p>
+      </>
+    ),
+  },
+  {
+    title: "Cloud",
+    body: "Using Google Cloud Platform and Amazon Web Services.",
+    backgroundColor: "#002868",
+    category: PortfolioCategories.BACKEND,
+    content: (
+      <>
+        <p>
+          Many of the latest web + bioinformatics cloud tools would be perfectly
+          applicable to my projects' needs, though UNC has a comparable IT
+          hardware infrastructure. Keeping a budget in mind, we prefer on-campus
+          hardware until projects reach a certain (relatively immense) threshold
+          of computation and usage.
+        </p>
+        <p>
+          My university is best integrated with Google Cloud Platform. I
+          participated in a work event where the IT department went to Google's
+          Chapel Hill headquarters to receive five days of training - we learned
+          procedures like spinning up a compute engine and using signed URL's to
+          read/write in a private bucket, tasks that I still frequently use.
+          Sooner or later I will pay to have a cloud certification to add to my
+          résumé.
+        </p>
+      </>
     ),
   },
 ];
 
 export default function Portfolio() {
+  const [category, setCategory] = useState(PortfolioCategories.RESEARCH);
+
+  const containerRef = useRef(null);
+
+  const handleCategoryChange = (c) => {
+    setCategory(c);
+    containerRef.current.scrollIntoView({ behavior: "smooth" });
+
+    // save category to url, use url for default category State
+    // thisurl.com/?category=Frontend
+  };
+
+  const Buttons = () => (
+    <div className="flex gap-2">
+      {Object.keys(PortfolioCategories).map((t, i) => {
+        const tt = PortfolioCategories[t];
+        const isActive = tt === category;
+
+        return (
+          <div
+            key={`portfolio_category_${i}`}
+            onClick={() => handleCategoryChange(tt)}
+            onKeyDown={() => handleCategoryChange(tt)}
+            className={
+              "text-lg font-bold px-2 rounded hover:shadow-lg hover:shadow-bg cursor-pointer transition-all " +
+              (isActive ? "bg-bg opacity-1" : "bg-primary opacity-75")
+            }
+            role="button"
+            tabIndex={i + 1}
+          >
+            {tt}
+          </div>
+        );
+      })}
+    </div>
+  );
+
   return (
-    <div className="flex flex-col md:flex-row">
-      <TitleCard title="Portfolio" bg="bg-secondary" />
+    <div className="flex flex-col md:flex-row" ref={containerRef}>
+      <TitleCard
+        title="Portfolio"
+        bg="bg-secondary"
+        extra={Buttons}
+        showSocial={false}
+      />
       <div className="flex-1">
         {cards.map(({ title, content, ...portfolio }, i) => (
           <PortfolioCard
             key={title}
             title={title}
             {...portfolio}
-            isLastCard={i === cards.length - 1}
+            isLastCard={
+              i === cards.filter((c) => c.category === category).length - 1
+            }
+            isActive={portfolio.category === category}
           >
             {content}
           </PortfolioCard>

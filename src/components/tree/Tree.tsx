@@ -5,6 +5,8 @@ import BranchContextProvider from "./context/BranchContext";
 import { WithTreeContext, useTreeContext } from "./context/TreeContext";
 import useDim from "./context/useDim";
 
+const CIRCLE_PADDING = 15;
+
 function TreeComponent() {
   const {
     state: { displayIndex, isSmallScreen, restartedAt },
@@ -24,8 +26,8 @@ function TreeComponent() {
       <div
         className="relative overflow-hidden bg-bg rounded-full transition-all"
         style={{
-          width: dim + "px",
-          height: dim + "px",
+          width: dim - CIRCLE_PADDING + "px",
+          height: dim - CIRCLE_PADDING + "px",
         }}
       >
         {!!dim &&

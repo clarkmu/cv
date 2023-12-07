@@ -7,7 +7,7 @@ const Anchor = ({ href, children }) => (
     href={href}
     target="_blank"
     rel="noreferrer"
-    className="hover:rounded-lg hover:mx-4 transition-all hover:scale-125"
+    className="px-4 hover:px-6 transition-all duration-300 hover:scale-125"
   >
     {children}
   </a>
@@ -16,23 +16,17 @@ const Anchor = ({ href, children }) => (
 export default function SocialIcons({ noPadding = false }) {
   return (
     <div className={!noPadding ? "pb-10" : ""}>
-      <div className="bg-[rgba(155,155,155,0.2)] hover:bg-[rgba(155,155,155,0.5)] flex gap-8 hover:gap-0 transition-all p-4 rounded-2xl">
-        <Anchor href="https://www.upwork.com/fl/clarkmu?s=1110580755107926016">
+      <div className="bg-[rgba(155,155,155,0.7)] hover:bg-[rgba(155,155,155,0.9)] flex transition-all duration-700 p-4 rounded-2xl">
+        <Anchor href="https://linkedin.com/in/clarkmu">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            enableBackground="new 0 0 2500 2500"
-            viewBox="0 0 2500 2500"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
             className={iconSize}
           >
-            <title>UpWork Profile</title>
-            <path
-              d="m2315.4 0h-2130.7c-102 0-184.7 80.2-184.7 179.1v2141.7c0 99 82.7 179.2 184.7 179.2h2130.7c102 0 184.6-80.3 184.6-179.2v-2141.7c0-98.9-82.6-179.1-184.6-179.1z"
-              fill="#6fda44"
-            />
-            <path
-              d="m1834.6 1453.7c-98.4 0-190.5-41.7-274.3-109.6l20.4-95.8.9-3.5c18.2-102 75.8-273.3 253-273.3 132.9 0 241 108.3 241 241.3-.4 132.6-108.5 240.9-241 240.9zm0-726.7c-226.4 0-401.9 147.3-473.2 389.5-109-163.7-191.4-360.2-239.7-525.7h-243.6v634.8c0 125.1-101.9 227.1-226.9 227.1s-226.8-102-226.8-227.1v-634.8h-243.7v634.8c-.9 260 210.5 473.4 470.1 473.4s471-213.4 471-473.4v-106.5c47.4 98.9 105.4 198.7 175.9 287.5l-149.3 702.7h249.5l108.1-509.7c94.8 60.8 203.8 98.9 328.8 98.9 267.2 0 484.7-219.2 484.7-486.7-.2-267-217.7-484.8-484.9-484.8z"
-              fill="#fff"
-            />
+            <title>LinkedIn Profile</title>
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
           </svg>
         </Anchor>
         <Anchor href="https://github.com/clarkmu">
@@ -51,16 +45,22 @@ export default function SocialIcons({ noPadding = false }) {
             </g>
           </svg>
         </Anchor>
-        <Anchor href="https://linkedin.com/in/clarkmu">
+        <Anchor href="https://www.upwork.com/fl/clarkmu?s=1110580755107926016">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
+            enableBackground="new 0 0 2500 2500"
+            viewBox="0 0 2500 2500"
             className={iconSize}
           >
-            <title>LinkedIn Profile</title>
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            <title>UpWork Profile</title>
+            <path
+              d="m2315.4 0h-2130.7c-102 0-184.7 80.2-184.7 179.1v2141.7c0 99 82.7 179.2 184.7 179.2h2130.7c102 0 184.6-80.3 184.6-179.2v-2141.7c0-98.9-82.6-179.1-184.6-179.1z"
+              fill="#6fda44"
+            />
+            <path
+              d="m1834.6 1453.7c-98.4 0-190.5-41.7-274.3-109.6l20.4-95.8.9-3.5c18.2-102 75.8-273.3 253-273.3 132.9 0 241 108.3 241 241.3-.4 132.6-108.5 240.9-241 240.9zm0-726.7c-226.4 0-401.9 147.3-473.2 389.5-109-163.7-191.4-360.2-239.7-525.7h-243.6v634.8c0 125.1-101.9 227.1-226.9 227.1s-226.8-102-226.8-227.1v-634.8h-243.7v634.8c-.9 260 210.5 473.4 470.1 473.4s471-213.4 471-473.4v-106.5c47.4 98.9 105.4 198.7 175.9 287.5l-149.3 702.7h249.5l108.1-509.7c94.8 60.8 203.8 98.9 328.8 98.9 267.2 0 484.7-219.2 484.7-486.7-.2-267-217.7-484.8-484.9-484.8z"
+              fill="#fff"
+            />
           </svg>
         </Anchor>
         <Anchor href="mailto:clarkmu@gmail.com">

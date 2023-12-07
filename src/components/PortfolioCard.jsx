@@ -9,6 +9,7 @@ export default function PortfolioCard({
   backgroundImage,
   backgroundColor,
   isLastCard,
+  isActive,
 }) {
   const [expanded, setExpanded] = useState(false);
   const containerHeight = expanded ? "min-h-screen" : "h-screen";
@@ -18,7 +19,7 @@ export default function PortfolioCard({
       <div
         className={`${containerHeight} ${centerOnClickClassname} ${
           !isLastCard && "border-b-bg border-b-4"
-        }`}
+        } ${isActive ? "block" : "hidden"} transition-all`}
       >
         <div
           className={`${containerHeight} flex py-12 ${centerOnClickClassname}`}
@@ -28,7 +29,7 @@ export default function PortfolioCard({
           }}
         >
           <div
-            className={`p-8 flex flex-col gap-4 bg-bg rounded-3xl w-full`}
+            className={`cursor-auto p-8 flex flex-col gap-4 bg-bg rounded-3xl w-full border shadow`}
             style={{ margin: "auto 2rem" }}
           >
             <h1 className="text-3xl font-bold whitespace-break-spaces m-0 p-0">

@@ -4,7 +4,7 @@ import TitleCard from "./TitleCard";
 export default function About() {
   return (
     <div className="flex flex-col md:flex-row">
-      <TitleCard title="About" bg="bg-primary" />
+      <TitleCard title="About" bg="bg-primary" showSocial={false} />
       <div className="flex-1 bg-bg min-h-screen">
         <div className="p-8 flex flex-col justify-center gap-8 h-full">
           <p>
