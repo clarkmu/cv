@@ -5,7 +5,7 @@ import TitleCard from "./TitleCard";
 import PortfolioCard from "./PortfolioCard";
 
 const PortfolioCategories = {
-  RESEARCH: "Research",
+  FULLSTACK: "Fullstack",
   FRONTEND: "Frontend",
   BACKEND: "Backend",
 };
@@ -27,7 +27,7 @@ const ZoomImg = ({ src, alt, className = "" }) => (
       <img
         src={src}
         alt={alt}
-        className={`w-full ${className}`}
+        className={`w-full shadow rounded border-gray-400 ${className}`}
         loading="lazy"
         title={alt}
       />
@@ -57,7 +57,7 @@ const cards = [
     title: "Primer ID",
     body: "An NIH-funded sequencing platform.",
     backgroundImage: "/primer-id.webp",
-    category: PortfolioCategories.RESEARCH,
+    category: PortfolioCategories.FULLSTACK,
     content: (
       <>
         <p>
@@ -78,11 +78,15 @@ const cards = [
           src="/tcs-flowchart.webp"
         />
         <p>
-          Files and parameters are created in the web app, which are then
-          collected by a cron job on the cluster server and inserted into a
+          Parameters are created in the web app and stored to a database.
+          Sequence files are uploaded to a private GCP bucket using a resumable
+          signed url. A cron job on the cluster server pings the app API
+          checking for submissiosn that are ready to initialize into the
           workload manager queue (Slurm) to await an environment in which a
-          proper amount of memory and processing power are available. Once
-          results are ready, they are emailed to the user.
+          proper amount of memory and processing power are available to run
+          through the pipeline. Once submissions have been processed, results
+          are stored in the bucket and a link is emailed to the user for viewing
+          and downloading.
         </p>
         <ZoomImg
           alt="Step 1/5 of configuring each sequence primer."
@@ -92,8 +96,8 @@ const cards = [
           Complex parameters can be set to configure processing in the UI. I
           created a visually appealing way for users that have to go through
           this form up to 4 times or more per submission. In the research world,
-          we very frequently use verification steps for them to check their work
-          for precision.
+          we very frequently use verification steps for users to check their
+          work for precision at each step.
         </p>
         <p>
           A Docker setup process is available to replicate this workflow on
@@ -119,31 +123,37 @@ const cards = [
     title: "Phylodynamics",
     body: "Representing HIV statistics for North Carolina.",
     backgroundImage: "/phylo-background.webp",
-    category: PortfolioCategories.RESEARCH,
+    category: PortfolioCategories.FULLSTACK,
     content: (
       <>
         <p>
           This platform aids in the processesing of HIV sequences from all
           tested cases in North Carolina. Both new and existing cases are
-          tracked, creating a phylogeny network.
+          tracked, creating a phylogeny network. The platform automates many
+          steps of a process that were previously done manually by personell,
+          durastically reducing turnaround times for getting results to where
+          they are needed.
         </p>
         <IFrame
           src="/phylo-specimen.pdf"
-          alt="The input is a sample of the virus, and this is the output we generate
-          for every patient (PHI omitted)."
+          alt="The input is a sample of a virus and this is the output we generate
+          for every patient (no PHI in document)."
         />
         <p>
-          Processed data is handed off to a RedMine database, where a team at
-          the UNC School of Medicine pools and distributes findings. Findings
-          include sharing outbreak hotspots with the Department of Health and
-          Human Services so that they can ramp up public prevention as well as
-          providing the CDC with official case numbers for the state.
+          Server processes watch for new data to process. After processing,
+          viewable records are created of each specimen. These records are sent
+          to the web application where they are accessible via a searchable data
+          table. Personnel then mark each processed specimen as successful,
+          failed, or sent for a repeat sampling. Successful data is forwarded to
+          a RedMine database (managed by others) in the network to be recoupled
+          to PHI.
         </p>
         <p>
-          Similar to the Primer ID application, there is a web application that
-          relays information to the cluster server for compute-intense
-          processing. This UI utilizes virtualized lists, paginated data tables,
-          Google Charts, and cloud storage buckets.
+          After the handoff of data, a team at the UNC School of Medicine pools
+          and distributes findings. Findings include sharing outbreak hotspots
+          with the Department of Health and Human Services so that they can ramp
+          up public prevention as well as providing the CDC with official case
+          numbers for the state.
         </p>
         <small>*Website is access protected and repo is private.</small>
       </>
@@ -153,7 +163,7 @@ const cards = [
     title: "Epitope Analysis Tool",
     body: "A grant proposal prototype.",
     backgroundImage: "/epitope-bg.webp",
-    category: PortfolioCategories.RESEARCH,
+    category: PortfolioCategories.FULLSTACK,
     content: (
       <>
         <p>
@@ -184,7 +194,7 @@ const cards = [
         </p>
         <ZoomImg
           src="/epitope-interface.webp"
-          alt="The developed UI for this grant proposal to seek funding."
+          alt="The developed UI for this grant proposal to seek funding for continued research and development."
         />
         <p>
           <PortfolioAnchor
@@ -205,7 +215,7 @@ const cards = [
     title: "Cited Publications",
     body: "Research publications related to the projects above that I have co-authored.",
     backgroundColor: "rgb(110, 155, 160)",
-    category: PortfolioCategories.RESEARCH,
+    category: PortfolioCategories.FULLSTACK,
     content: (
       <ol className="ml-4 text-base gap-4 flex flex-col">
         <li>
@@ -315,8 +325,8 @@ const cards = [
       <>
         <p>
           I set out on a mission to fine-tune my UI-design and Figma skills.
-          Over a few weeks I created a note taking app, borrowing the best ideas
-          from current writing platform designs and features.
+          Over just a few weeks I created a note taking app, borrowing the best
+          ideas from current writing platform designs and features.
         </p>
         <ZoomImg
           alt="Using Figma to design an application before starting development."
@@ -328,14 +338,21 @@ const cards = [
           process is smooth and simple. I jam-packed the FAQ page with SEO-rich
           content.
         </p>
+        <ZoomImg
+          src="notesy-interface.webp"
+          alt="Notesy interface consisting of collections, notes, and tags."
+        />
         <div>
-          Additional points of development includes:
-          <ol className="ml-4 list-disc">
-            <li>DraftJS saved to MongoDB to retain notes</li>
+          Development consisted of many of the latest advanced features
+          including:
+          <ol className="ml-8 list-disc">
+            <li>Lighthouse scores considered (performance at 100)</li>
+            <li>Customized DraftJS saved to MongoDB to retain notes</li>
             <li>Websockets for shared editing</li>
-            <li>React useContext and custom hooks</li>
+            <li>React useReducer and custom hooks</li>
             <li>List virtualization</li>
-            <li>Deployed to GCP App Engine</li>
+            <li>NextAuth authentication</li>
+            <li>Installable as a Progressive Web App</li>
           </ol>
         </div>
         <p></p>
@@ -402,7 +419,7 @@ const cards = [
           Progressive Web App.
         </p>
         <video className="mini-video" controls>
-          <source src="/music-app-video.mp4" type="video/mp4" />
+          <source src="/music-app-video.mov" type="video/mp4" />
           <track src="" srcLang="en" kind="captions" label="unneccessary" />
           Your browser does not support the video tag.
         </video>
@@ -527,11 +544,11 @@ const cards = [
     content: (
       <>
         <p>
-          Many of the latest web + bioinformatics cloud tools would be perfectly
-          applicable to my projects' needs, though UNC has a comparable IT
+          Many of the latest web &amp; bioinformatics cloud tools would be
+          applicable to my projects needs, though UNC has a comparable IT
           hardware infrastructure. Keeping a budget in mind, we prefer on-campus
-          hardware until projects reach a certain (relatively immense) threshold
-          of computation and usage.
+          hardware until projects reach a certain threshold of computation and
+          usage.
         </p>
         <p>
           My university is best integrated with Google Cloud Platform. I
@@ -539,8 +556,6 @@ const cards = [
           Chapel Hill headquarters to receive five days of training - we learned
           procedures like spinning up a compute engine and using signed URL's to
           read/write in a private bucket, tasks that I still frequently use.
-          Sooner or later I will pay to have a cloud certification to add to my
-          résumé.
         </p>
       </>
     ),
@@ -548,7 +563,7 @@ const cards = [
 ];
 
 export default function Portfolio() {
-  const [category, setCategory] = useState(PortfolioCategories.RESEARCH);
+  const [category, setCategory] = useState(PortfolioCategories.FULLSTACK);
 
   const containerRef = useRef(null);
 

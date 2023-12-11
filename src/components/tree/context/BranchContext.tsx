@@ -109,15 +109,13 @@ export default function BranchContextProvider({
       c.stroke();
 
       if (currT < end) {
-        setTimeout(() => {
-          animateBranch(
-            branches,
-            rollingRadius,
-            rollingTheta,
-            currT + ONE_RADIAN,
-            end
-          );
-        }, 10);
+        animateBranch(
+          branches,
+          rollingRadius,
+          rollingTheta,
+          currT + ONE_RADIAN,
+          end
+        );
       } else if (branches.nodes) {
         if (branches.nodes[0]) {
           animateNode(
@@ -162,15 +160,7 @@ export default function BranchContextProvider({
       c.stroke();
 
       if (currR <= rollingRadius - 1) {
-        setTimeout(() => {
-          animateNode(
-            branches,
-            rollingRadius,
-            rollingTheta,
-            currR + 1,
-            callback
-          );
-        }, 10);
+        animateNode(branches, rollingRadius, rollingTheta, currR + 1, callback);
       } else {
         if (callback) {
           callback();
@@ -208,15 +198,13 @@ export default function BranchContextProvider({
       c.stroke();
 
       if (curr < end) {
-        setTimeout(() => {
-          animateRoot(
-            radius,
-            start,
-            end,
-            curr + ONE_RADIAN,
-            currStart + ONE_RADIAN
-          );
-        }, 5);
+        animateRoot(
+          radius,
+          start,
+          end,
+          curr + ONE_RADIAN,
+          currStart + ONE_RADIAN
+        );
       } else {
         if (!isSecondToLastBranch) {
           incrementDisplayIndex();
