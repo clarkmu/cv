@@ -370,7 +370,7 @@ const cards = [
   {
     title: "react-zoom-scroll-effect",
     body: "An NPM package to make scrolling more dynamic.",
-    backgroundImage: "/zoom-scroll-background.webp",
+    backgroundImage: "/with_linear_gradient.gif",
     category: PortfolioCategories.FRONTEND,
     content: (
       <>
