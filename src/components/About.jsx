@@ -1,10 +1,17 @@
 import React from "react";
 import TitleCard from "./TitleCard";
 
+const Me = () => (
+  <img
+    src="/me.webp"
+    className="w-[200px] h-[200px] lg:w-[150px] lg:h-[150px] rounded-full"
+  />
+);
+
 export default function About() {
   return (
     <div className="flex flex-col md:flex-row">
-      <TitleCard title="About" bg="bg-primary" showSocial={false} />
+      <TitleCard title="About" bg="bg-primary" showSocial={false} extra={Me} />
       <div className="flex-1 bg-bg min-h-screen">
         <div className="p-8 flex flex-col justify-center gap-8 h-full">
           <p>

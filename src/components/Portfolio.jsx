@@ -61,10 +61,10 @@ const cards = [
     content: (
       <>
         <p>
-          A free and open platform that allows researchers from all over the
-          world to process Next Generation Sequencing data for drug resistance,
-          sequence alignment, and outgrowth dating. This platform was created in
-          conjunction with the pipelines found at
+          A free and open-source platform that allows researchers from all over
+          the world to process Next Generation Sequencing data for drug
+          resistance, sequence alignment, and outgrowth dating. This platform
+          was created in conjunction with the pipelines found at
           <Code text="GitHub/ViralSeq/viral_seq" /> and{" "}
           <Code text="GitHub/veg/ogv-dating" />.
         </p>
