@@ -14,6 +14,7 @@ export function Head() {
   return (
     <>
       <html lang="en"></html>
+      <title>Michael Clark Portfolio</title>
     </>
   );
 }
