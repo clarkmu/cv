@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useDim() {
-  const [dim, setDim] = useState(500);
+  const [dim, setDim] = useState(300);
 
   useEffect(() => {
     const calcDim = () => {
