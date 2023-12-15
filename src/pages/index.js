@@ -19,7 +19,7 @@ export function Head() {
   );
 }
 
-export default function App() {
+export default function App({ location }) {
   return (
     <>
       {/* <div className="h-screen w-screen">
@@ -30,7 +30,7 @@ export default function App() {
       <Intro />
       <Suspense fallback={<div>Loading...</div>}>
         <About />
-        <Portfolio />
+        <Portfolio location={location} />
         <Contact />
       </Suspense>
     </>

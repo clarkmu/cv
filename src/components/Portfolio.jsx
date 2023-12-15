@@ -562,9 +562,9 @@ const cards = [
   },
 ];
 
-export default function Portfolio() {
+export default function Portfolio({ location }) {
   const [category, setCategory] = useState(() => {
-    const url = new URL(window.location.href);
+    const url = new URL(location.href);
     const p = url.searchParams.get("portfolio");
 
     return p &&
