@@ -564,8 +564,14 @@ const cards = [
 
 export default function Portfolio({ location }) {
   const [category, setCategory] = useState(() => {
-    const url = new URL(location.href);
-    const p = url.searchParams.get("portfolio");
+    let p = false;
+
+    try {
+      const url = new URL(location.href);
+      const p = url.searchParams.get("portfolio");
+    } catch (e) {
+      console.log("Failed to get location");
+    }
 
     return p &&
       Object.keys(PortfolioCategories)

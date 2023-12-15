@@ -25,7 +25,6 @@ module.exports = {
       resolve: "gatsby-plugin-manifest",
       options: {
         name: `Michael Clark Portfolio`,
-        title: `Michael Clark Portfolio`,
         short_name: `ClarkMU`,
         start_url: `/`,
         icon: "static/logo.webp",
