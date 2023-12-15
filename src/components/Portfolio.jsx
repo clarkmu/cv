@@ -52,7 +52,7 @@ const Code = ({ text }) => (
 );
 
 const cards = [
-  /* RESEARCH */
+  /* FULLSTACK */
   {
     title: "Primer ID",
     body: "An NIH-funded sequencing platform.",
@@ -563,7 +563,17 @@ const cards = [
 ];
 
 export default function Portfolio() {
-  const [category, setCategory] = useState(PortfolioCategories.FULLSTACK);
+  const [category, setCategory] = useState(() => {
+    const url = new URL(window.location.href);
+    const p = url.searchParams.get("portfolio");
+
+    return p &&
+      Object.keys(PortfolioCategories)
+        .map((k, v) => k)
+        .includes(p)
+      ? PortfolioCategories[p]
+      : PortfolioCategories.FULLSTACK;
+  });
 
   const containerRef = useRef(null);
 

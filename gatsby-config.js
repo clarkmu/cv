@@ -28,7 +28,7 @@ module.exports = {
         title: `Michael Clark Portfolio`,
         short_name: `ClarkMU`,
         start_url: `/`,
-        icon: "static/me.webp",
+        icon: "static/logo.webp",
       },
     },
   ],

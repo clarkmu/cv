@@ -5,6 +5,8 @@ const Me = () => (
   <img
     src="/me.webp"
     className="w-[200px] h-[200px] lg:w-[150px] lg:h-[150px] rounded-full"
+    alt="Me."
+    title="That's me!"
   />
 );
 
@@ -17,13 +19,14 @@ export default function About() {
           <p>
             Highly skilled and versatile Full Stack Web Developer with proven
             expertise in designing, developing, and deploying robust
-            applications and pipelines in collarboration with scientific staff.
+            applications and processes in collaboration with non-technical
+            personnel.
           </p>
-          <p>Wireframes UI and whiteboards ideas using Figma.</p>
+          <p>Wireframes, UI, and whiteboards ideas using Figma.</p>
           <p>
-            Develops web applications using whatever tools are neccessary for
-            the job. Most procicient with NextJS + Tailwind for rapid web
-            development and Cypress for e2e testing.
+            Develops web applications with up-to-date frameworks and
+            technologies. Most frequently uses NextJS + Tailwind for rapid web
+            development.
           </p>
           <p>
             Deploys applications to Google Cloud Platform and
