@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Zoom from "react-medium-image-zoom";
 
 import TitleCard from "./TitleCard";
@@ -563,23 +563,21 @@ const cards = [
 ];
 
 export default function Portfolio({ location }) {
-  const [category, setCategory] = useState(() => {
-    let p = false;
+  const [category, setCategory] = useState(PortfolioCategories.FULLSTACK);
 
-    try {
-      const url = new URL(location.href);
-      const p = url.searchParams.get("portfolio");
-    } catch (e) {
-      console.log("Failed to get location");
-    }
+  useEffect(() => {
+    const url = new URL(location.href);
+    const p = url.searchParams.get("portfolio");
 
-    return p &&
+    if (
+      p &&
       Object.keys(PortfolioCategories)
         .map((k, v) => k)
         .includes(p)
-      ? PortfolioCategories[p]
-      : PortfolioCategories.FULLSTACK;
-  });
+    ) {
+      setCategory(PortfolioCategories[p]);
+    }
+  }, []);
 
   const containerRef = useRef(null);
 
