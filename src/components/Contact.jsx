@@ -13,8 +13,8 @@ export default function Contact() {
           <div className="flex-1 p-8 flex flex-col gap-8 m-8">
             <p className="font-bold">
               I am always seeking new opportunities to leverage these skills and
-              contribute to cutting-edge projects in scientific research and
-              computational biology.
+              contribute to cutting-edge projects that require thinking outside
+              of the box.
             </p>
             <p>Please feel free to reach out at any of the links provided,</p>
             <p>

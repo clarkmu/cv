@@ -53,7 +53,7 @@ function TreeComponent() {
           <div
             className={`${isSmallScreen ? "text-lg" : "text-2xl"} font-bolder`}
           >
-            Research Developer
+            Fullstack Developer
           </div>
         </div>
       </div>
