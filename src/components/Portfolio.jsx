@@ -295,13 +295,17 @@ const cards = [
       <>
         <p>
           Creating visual effects helps me retain my foundational math skills. I
-          have created a few articles at{" "}
+          have a{" "}
+          <PortfolioAnchor
+            href="https://clarkmu.com/fiber/"
+            text="Three.js + Fiber Portfolio"
+          />{" "}
+          as well as an account at{" "}
           <PortfolioAnchor
             href="https://observablehq.com/@clarkmu"
             text="Observable"
           />{" "}
-          outlining some of the better visuals I have created, mostly items from
-          my old Android Live Wallpaper.
+          where I have outlined a few animations.
         </p>
         <p>
           My latest example of data visualization is adding an output file to a

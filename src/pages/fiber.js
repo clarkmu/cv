@@ -1,10 +1,10 @@
 import React, { Suspense, lazy, useState } from "react";
 
 const GravitySimulator = lazy(() =>
-  import("../components/fabric/GravitySimulator")
+  import("../components/fiber/GravitySimulator")
 );
 
-const VortexSimulator = lazy(() => import("../components/fabric/Vortex"));
+const VortexSimulator = lazy(() => import("../components/fiber/Vortex"));
 
 const GravityScene = () => (
   <Suspense fallback={<div>Loading Simulator</div>}>
@@ -40,13 +40,16 @@ const SceneClarkMU = () => (
   <div className="w-full h-full bg-black flex flex-col gap-4 justify-center items-center">
     <div className="flex flex-col gap-4 text-center w-1/2">
       <div className="text-white text-4xl font-bolder">
-        ClarkMU Fabric Portfolio
+        ClarkMU Fiber Portfolio
       </div>
       <div className="text-white text-2xl">
         A collection of inspiring animations with UI to toggle scenes.
       </div>
       <div className="text-white text-2xl">
         Select scenes from the menu below.
+      </div>
+      <div className="text-blue-500 underline">
+        <a href="https://clarkmu.com">Full Portfolio Website</a>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
 
 Portfolio website
 
-### /fabric
+### /fiber
 
 Three.js samples
 
