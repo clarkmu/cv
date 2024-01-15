@@ -22,7 +22,7 @@ const MenuItem = ({ children, selected, ...props }) => (
   <div
     {...props}
     className={
-      "transition-all hover:scale-110 cursor-pointer px-1 " +
+      "transition-all hover:font-bold cursor-pointer px-1 " +
       (selected ? "border-2 border-gray-500 rounded" : "")
     }
   >
@@ -31,33 +31,59 @@ const MenuItem = ({ children, selected, ...props }) => (
 );
 
 const SCENES = {
-  GRAVITY: "GRAVITY",
-  VORTEX: "VORTEX",
+  CLARKMU: "ClarkMU",
+  GRAVITY: "Gravity",
+  VORTEX: "Vortex",
 };
 
+const SceneClarkMU = () => (
+  <div className="w-full h-full bg-black flex flex-col gap-4 justify-center items-center">
+    <div className="flex flex-col gap-4 text-center w-1/2">
+      <div className="text-white text-4xl font-bolder">
+        ClarkMU Fabric Portfolio
+      </div>
+      <div className="text-white text-2xl">
+        A collection of inspiring animations with UI to toggle scenes.
+      </div>
+      <div className="text-white text-2xl">
+        Select scenes from the menu below.
+      </div>
+    </div>
+  </div>
+);
+
 export default function Fabric(params) {
-  const [scene, setScene] = useState(SCENES.GRAVITY);
+  const [scene, setScene] = useState(SCENES.CLARKMU);
 
   const SceneMenu = () => (
-    <div className="flex gap-2 absolute bottom-0 rounded left-1/2 translate-x-[-50%] bg-[rgba(255,255,255,0.9)] p-2">
-      <MenuItem
-        selected={scene === SCENES.GRAVITY}
-        onClick={() => setScene(SCENES.GRAVITY)}
-      >
-        Gravity
-      </MenuItem>
-      <MenuItem
-        selected={scene === SCENES.VORTEX}
-        onClick={() => setScene(SCENES.VORTEX)}
-      >
-        Vortex
-      </MenuItem>
+    <div
+      className={
+        "flex gap-2 absolute bottom-0 rounded left-1/2 translate-x-[-50%] " +
+        "transition-all bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.9)] " +
+        "p-2 hover:px-4 hover:py-3 hover:scale-110 " +
+        "select-none"
+      }
+    >
+      {Object.keys(SCENES).map((key) => (
+        <MenuItem
+          selected={scene === SCENES[key]}
+          onClick={() => setScene(SCENES[key])}
+        >
+          {SCENES[key]}
+        </MenuItem>
+      ))}
     </div>
   );
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
-      {scene === SCENES.GRAVITY ? <GravityScene /> : <VortexScene />}
+    <div className="relative w-screen h-screen overflow-hidden bg-black">
+      {scene === SCENES.CLARKMU ? (
+        <SceneClarkMU />
+      ) : scene === SCENES.GRAVITY ? (
+        <GravityScene />
+      ) : (
+        <VortexScene />
+      )}
       <SceneMenu />
     </div>
   );
