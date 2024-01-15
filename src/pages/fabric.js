@@ -76,15 +76,17 @@ export default function Fabric(params) {
   );
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-black">
-      {scene === SCENES.CLARKMU ? (
-        <SceneClarkMU />
-      ) : scene === SCENES.GRAVITY ? (
-        <GravityScene />
-      ) : (
-        <VortexScene />
-      )}
-      <SceneMenu />
+    <div className="absolute inset-0 overflow-hidden bg-black">
+      <div className="relative w-full h-full">
+        {scene === SCENES.CLARKMU ? (
+          <SceneClarkMU />
+        ) : scene === SCENES.GRAVITY ? (
+          <GravityScene />
+        ) : (
+          <VortexScene />
+        )}
+        <SceneMenu />
+      </div>
     </div>
   );
 }
