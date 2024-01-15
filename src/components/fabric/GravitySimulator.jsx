@@ -1,32 +1,41 @@
-import React, { Fragment, useEffect } from "react";
-import { useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import Menu from "./components/Menu";
 
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
-}
+import { randomHex } from "./lib/randomHex";
+import { usePrevious } from "./lib/usePrevious";
+import { validateNumericInput } from "./lib/validateNumericInput";
 
-const Input = ({ clasName, ...props }) => (
-  <input
-    {...props}
-    className={`border-2 border-black w-[5ch] rounded px-1 ${clasName}`}
-  />
-);
+import Input from "./components/Input";
+import InputContainer from "./components/InputContainer";
 
-const InputContainer = ({ children, label }) => (
-  <div className="flex gap-2 justify-between w-full">
-    <label>{label}</label>
-    {children}
-  </div>
-);
-
-const randomHex = () =>
-  "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0");
+const randomGravity = (i) => ({
+  id: Math.random(),
+  position: {
+    x: i === 0 ? 0 : i === 1 ? -5 : Math.random() * 30,
+    y: i === 0 ? 0 : i === 1 ? -5 : Math.random() * 30,
+    z: i === 0 ? 0 : i === 1 ? -5 : Math.random() * 30,
+  },
+  velocity: { x: 0, y: 0, z: 0 },
+  size: [2],
+  color: randomHex(),
+});
+const randomParticle = () => ({
+  id: Math.random(),
+  position: {
+    x: Math.random() * 30 - 15,
+    y: Math.random() * 30 - 15,
+    z: Math.random() * 30 - 15,
+  },
+  velocity: {
+    x: Math.floor(Math.random() * 2 - 2),
+    y: Math.floor(Math.random() * 2 - 2),
+    z: Math.floor(Math.random() * 2 - 2),
+  },
+  size: [0.5],
+  color: randomHex(),
+});
 
 function Sphere({
   color,
@@ -77,40 +86,6 @@ function Sphere({
     </mesh>
   );
 }
-
-const randomGravity = (i) => ({
-  id: Math.random(),
-  position: {
-    x: i === 0 ? 0 : i === 1 ? -5 : Math.random() * 30,
-    y: i === 0 ? 0 : i === 1 ? -5 : Math.random() * 30,
-    z: i === 0 ? 0 : i === 1 ? -5 : Math.random() * 30,
-  },
-  velocity: { x: 0, y: 0, z: 0 },
-  size: [2],
-  color: randomHex(),
-});
-const randomParticle = () => ({
-  id: Math.random(),
-  position: {
-    x: Math.random() * 30 - 15,
-    y: Math.random() * 30 - 15,
-    z: Math.random() * 30 - 15,
-  },
-  velocity: {
-    x: Math.floor(Math.random() * 2 - 2),
-    y: Math.floor(Math.random() * 2 - 2),
-    z: Math.floor(Math.random() * 2 - 2),
-  },
-  size: [0.5],
-  color: randomHex(),
-});
-
-const validateNumericInput = (e) => {
-  // input.number allows empty no value >_>
-  let v = parseInt(e.target.value);
-  if (v === NaN) v = 0;
-  return v;
-};
 
 export default function GravitySimulator() {
   const [gravityCount, setGravityCount] = useState(2);
@@ -199,70 +174,45 @@ export default function GravitySimulator() {
     }
   }, [gravityCount, particleCount]);
 
-  const Menu = () => {
-    const [collapsed, setCollapsed] = useState(false);
-
-    return (
-      //   user menu overlay component
-
-      <div className="w-[15ch] absolute top-2 left-2 flex flex-col gap-4 bg-[rgba(255,255,255,0.25)] p-4 rounded select-none">
-        <div
-          className="bg-[rgba(255,255,255,0.5)] text-center cursor-pointer"
-          onClick={() => setCollapsed((b) => !b)}
-        >
-          <div
-            className={
-              " transition-all rotate-0 " + (collapsed && " !-rotate-90")
-            }
-          >
-            V
-          </div>
-        </div>
-        {!collapsed && (
-          <>
-            <InputContainer label="Gravities">
-              <Input
-                type="number"
-                value={gravityCount}
-                onChange={(e) => setGravityCount(validateNumericInput(e))}
-                min={0}
-              />
-            </InputContainer>
-            <InputContainer label="Particles">
-              <Input
-                type="number"
-                value={particleCount}
-                onChange={(e) => setParticleCount(validateNumericInput(e))}
-                min={0}
-              />
-            </InputContainer>
-            <InputContainer label="Speed">
-              <Input
-                type="number"
-                value={speed}
-                onChange={(e) => setSpeed(validateNumericInput(e))}
-                min={1}
-                step={speed > 101 ? 100 : 10}
-              />
-            </InputContainer>
-            <button
-              className="bg-white hover:bg-gray-100 rounded px-2 py-1"
-              onClick={() => setRegenerate(Math.random())}
-            >
-              Regenerate
-            </button>
-            <span className="bg-white text-black text-sm px-2 py-1">
-              Pan and zoom to move around.
-            </span>
-          </>
-        )}
-      </div>
-    );
-  };
+  const GravityMenu = () => (
+    <Menu>
+      <InputContainer label="Gravities">
+        <Input
+          type="number"
+          value={gravityCount}
+          onChange={(e) => setGravityCount(validateNumericInput(e))}
+          min={0}
+        />
+      </InputContainer>
+      <InputContainer label="Particles">
+        <Input
+          type="number"
+          value={particleCount}
+          onChange={(e) => setParticleCount(validateNumericInput(e))}
+          min={0}
+        />
+      </InputContainer>
+      <InputContainer label="Speed">
+        <Input
+          type="number"
+          value={speed}
+          onChange={(e) => setSpeed(validateNumericInput(e))}
+          min={1}
+          step={speed > 101 ? 100 : 10}
+        />
+      </InputContainer>
+      <button
+        className="bg-white hover:bg-gray-100 rounded px-2 py-1"
+        onClick={() => setRegenerate(Math.random())}
+      >
+        Regenerate
+      </button>
+    </Menu>
+  );
 
   return (
     <div className="bg-black w-full h-full relative">
-      <Canvas>
+      <Canvas camera={{ position: [20, 0, 0] }}>
         <pointLight position={[0, -3, -3]} decay={0} intensity={Math.PI} />
         {gravities.map((gravity, i) => (
           <Fragment key={`gravity_${gravity.id}`}>
@@ -290,7 +240,7 @@ export default function GravitySimulator() {
         ))}
         <OrbitControls zoom0={10} />
       </Canvas>
-      <Menu />
+      <GravityMenu />
     </div>
   );
 }
