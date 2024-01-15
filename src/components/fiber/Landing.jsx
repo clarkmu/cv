@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState } from "react";
+import React, { Suspense, lazy, useState, useEffect } from "react";
 
 const GravitySimulator = lazy(() => import("./GravitySimulator"));
 
@@ -44,7 +44,7 @@ const SceneClarkMU = () => (
         A collection of inspiring animations with UI to toggle scenes.
       </div>
       <div className="text-white text-2xl">
-        Select scenes from the menu below.
+        Select scenes from the menu at the bottom of this page.
       </div>
       <div className="text-blue-500 underline">
         <a href="https://clarkmu.com">Full Portfolio Website</a>
@@ -55,6 +55,13 @@ const SceneClarkMU = () => (
 
 export default function Landing() {
   const [scene, setScene] = useState(SCENES.CLARKMU);
+  const [hasSeenMenu, setHasSeenMenu] = useState(false);
+
+  useEffect(() => {
+    if (!hasSeenMenu && scene !== SCENES.CLARKMU) {
+      setHasSeenMenu(true);
+    }
+  }, [scene]);
 
   const SceneMenu = () => (
     <div
@@ -62,8 +69,8 @@ export default function Landing() {
         "flex gap-2 absolute bottom-0 rounded left-1/2 translate-x-[-50%] " +
         "transition-all bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.9)] " +
         "p-2 hover:px-4 hover:py-3 hover:scale-110 " +
-        "select-none" +
-        (scene === SCENES.CLARKMU && " animate-pulse hover:animate-none")
+        "select-none " +
+        (!hasSeenMenu && "animate-pulse hover:animate-none")
       }
     >
       {Object.keys(SCENES).map((key) => (
