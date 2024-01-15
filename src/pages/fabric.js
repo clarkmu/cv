@@ -22,8 +22,8 @@ const MenuItem = ({ children, selected, ...props }) => (
   <div
     {...props}
     className={
-      "transition-all hover:font-bold cursor-pointer px-1 " +
-      (selected ? "border-2 border-gray-500 rounded" : "")
+      "transition-all hover:font-bold cursor-pointer px-1 rounded " +
+      (selected ? "border-2 border-gray-500" : "")
     }
   >
     {children}
