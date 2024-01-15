@@ -9,6 +9,7 @@ import { validateNumericInput } from "./lib/validateNumericInput";
 
 import Input from "./components/Input";
 import InputContainer from "./components/InputContainer";
+import Button from "./components/Button";
 
 const randomGravity = (i) => ({
   id: Math.random(),
@@ -201,12 +202,7 @@ export default function GravitySimulator() {
           step={speed > 101 ? 100 : 10}
         />
       </InputContainer>
-      <button
-        className="bg-white hover:bg-gray-100 rounded px-2 py-1"
-        onClick={() => setRegenerate(Math.random())}
-      >
-        Regenerate
-      </button>
+      <Button onClick={() => setRegenerate(Math.random())}>Regenerate</Button>
     </Menu>
   );
 

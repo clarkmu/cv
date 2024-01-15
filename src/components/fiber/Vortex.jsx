@@ -5,15 +5,15 @@ import Menu from "./components/Menu";
 import InputContainer from "./components/InputContainer";
 import Input from "./components/Input";
 import { validateNumericInput } from "./lib/validateNumericInput";
+import Button from "./components/Button";
 
 const randomHex = () =>
   "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0");
 
 export default function Vortex(params) {
-  const ij = 6;
-
+  const [ij, setIJ] = useState(6);
   const [vw, setVw] = useState(0.5);
-  const [vh, setVh] = useState(2.5);
+  const [vh, setVh] = useState(1.5);
   const [vz, setVz] = useState(0.5);
   const [ballSize, setBallSize] = useState(0.5);
   const [lights, setLights] = useState(true);
@@ -83,6 +83,56 @@ export default function Vortex(params) {
 
   const VortexMenu = () => (
     <Menu>
+      <div className="text-center text-white">PRESETS</div>
+      <Button
+        onClick={() => {
+          setVw(0.5);
+          setVh(0);
+          setVz(0.5);
+          setIJ(6.3);
+        }}
+      >
+        Galactic
+      </Button>
+      <Button
+        onClick={() => {
+          setVw(0.5);
+          setVh(1.5);
+          setVz(0.5);
+          setIJ(1.6);
+        }}
+      >
+        Conical
+      </Button>
+      <Button
+        onClick={() => {
+          setVw(0.5);
+          setVh(0);
+          setVz(0.5);
+          setIJ(6);
+        }}
+      >
+        Vortex
+      </Button>
+      <Button
+        onClick={() => {
+          setVw(0.5);
+          setVh(1.5);
+          setVz(0.5);
+          setIJ(6);
+        }}
+      >
+        Reset
+      </Button>
+      <InputContainer label="C">
+        <Input
+          type="number"
+          step={0.1}
+          min={0}
+          value={ij}
+          onChange={(e) => setIJ(validateNumericInput(e))}
+        />
+      </InputContainer>
       <InputContainer label="Width">
         <Input
           type="number"
@@ -133,7 +183,7 @@ export default function Vortex(params) {
 
   return (
     <div className="bg-black w-full h-full relative">
-      <Canvas camera={{ fov: 45, position: [-500, 0, 0] }}>
+      <Canvas camera={{ fov: 45, position: [-500, 50, 0] }}>
         <pointLight position={[-3, -3, -3]} decay={0} intensity={Math.PI} />
         <OrbitControls zoom0={10} />
         {particles.map(({ id, ...p }, i) => (

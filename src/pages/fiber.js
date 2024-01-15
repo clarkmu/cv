@@ -55,8 +55,8 @@ const SceneClarkMU = () => (
   </div>
 );
 
-export default function Fabric(params) {
-  const [scene, setScene] = useState(SCENES.CLARKMU);
+export default function Fiber() {
+  const [scene, setScene] = useState(SCENES.VORTEX);
 
   const SceneMenu = () => (
     <div
@@ -69,6 +69,7 @@ export default function Fabric(params) {
     >
       {Object.keys(SCENES).map((key) => (
         <MenuItem
+          key={key}
           selected={scene === SCENES[key]}
           onClick={() => setScene(SCENES[key])}
         >
