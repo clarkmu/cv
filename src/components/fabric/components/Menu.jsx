@@ -19,7 +19,7 @@ export default function Menu({ children, showMoveable = true }) {
         </div>
       </div>
       {!collapsed && children}
-      {showMoveable && (
+      {showMoveable && !collapsed && (
         <span className="bg-white text-black text-sm px-2 py-1">
           Pan and zoom to move around.
         </span>
