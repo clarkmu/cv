@@ -62,7 +62,8 @@ export default function Landing() {
         "flex gap-2 absolute bottom-0 rounded left-1/2 translate-x-[-50%] " +
         "transition-all bg-[rgba(255,255,255,0.75)] hover:bg-[rgba(255,255,255,0.9)] " +
         "p-2 hover:px-4 hover:py-3 hover:scale-110 " +
-        "select-none"
+        "select-none" +
+        (scene === SCENES.CLARKMU && " animate-pulse hover:animate-none")
       }
     >
       {Object.keys(SCENES).map((key) => (
