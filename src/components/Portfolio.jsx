@@ -587,7 +587,11 @@ export default function Portfolio({ location }) {
 
   const handleCategoryChange = (c) => {
     setCategory(c);
-    containerRef.current.scrollIntoView({ behavior: "smooth" });
+    // containerRef.current.scrollIntoView({ behavior: "smooth" });
+    window.scrollTo({
+      top: containerRef.current.offsetTop,
+      behavior: "smooth",
+    });
 
     // save category to url, use url for default category State
     // thisurl.com/?category=Frontend
