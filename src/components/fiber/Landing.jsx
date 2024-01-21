@@ -90,7 +90,7 @@ const SceneMenu = ({ scene, setScene }) => {
 
 export default function Landing({ location }) {
   const [scene, setScene] = useState(
-    SCENES[location.hash.replace("#", "").toUpperCase()] || SCENES.NOMANSSKY
+    SCENES[location.hash.replace("#", "").toUpperCase()] || SCENES.CLARKMU
   );
 
   return (
