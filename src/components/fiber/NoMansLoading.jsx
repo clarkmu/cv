@@ -83,7 +83,7 @@ export default function NoMansLoading() {
             ></div>
           );
         })}
-        <div className="absolute w-[50vw] -translate-x-1/2 bg-[rgba(255,255,255,0.95)] text-center text-xl font-bolder rounded translate-y-[-300%]">
+        <div className="absolute w-[50vw] -translate-x-1/2 bg-[rgba(255,255,255,0.95)] text-center text-xl font-bolder rounded translate-y-[-300%] lg:translate-y-[-600%]">
           Coming soon. For now, here is the No Man's Sky loading screen.
         </div>
       </div>
