@@ -1,10 +1,10 @@
 import React, { lazy, Suspense } from "react";
-import Intro from "../components/Intro";
+import Intro from "../components/portfolio/Intro";
 import "react-medium-image-zoom/dist/styles.css";
 
-const About = lazy(() => import("../components/About"));
-const Portfolio = lazy(() => import("../components/Portfolio"));
-const Contact = lazy(() => import("../components/Contact"));
+const About = lazy(() => import("../components/portfolio/About"));
+const Portfolio = lazy(() => import("../components/portfolio/Portfolio"));
+const Contact = lazy(() => import("../components/portfolio/Contact"));
 
 export function Head() {
   return (

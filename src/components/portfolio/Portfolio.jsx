@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Zoom from "react-medium-image-zoom";
 
 import TitleCard from "./TitleCard";
