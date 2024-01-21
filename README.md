@@ -4,11 +4,16 @@
 
 Portfolio website
 
+url can include /#frontend or /#backend to set initial portfolio selection
+
 ### /fiber
 
 Three.js samples
 
 3D Gravity Simulator
+Vortex Simulator
+
+url can include /#gravity or /#vortex to set initial scene
 
 ### /effects
 

@@ -1,8 +1,12 @@
 import React, { Suspense, lazy, useState, useEffect } from "react";
+import NoMansLoading from "./NoMansLoading";
 
 const GravitySimulator = lazy(() => import("./GravitySimulator"));
 
 const VortexSimulator = lazy(() => import("./Vortex"));
+
+const NoMansSkySimulator = () =>
+  true ? <NoMansLoading /> : lazy(() => import("./NoMansSky"));
 
 const GravityScene = () => (
   <Suspense fallback={<div>Loading Simulator</div>}>
@@ -32,6 +36,7 @@ const SCENES = {
   CLARKMU: "ClarkMU",
   GRAVITY: "Gravity",
   VORTEX: "Vortex",
+  NOMANSSKY: "No Man's Sky",
 };
 
 const SceneClarkMU = () => (
@@ -53,17 +58,14 @@ const SceneClarkMU = () => (
   </div>
 );
 
-export default function Landing() {
-  const [scene, setScene] = useState(SCENES.CLARKMU);
+const SceneMenu = ({ scene, setScene }) => {
   const [hasSeenMenu, setHasSeenMenu] = useState(false);
-
   useEffect(() => {
     if (!hasSeenMenu && scene !== SCENES.CLARKMU) {
       setHasSeenMenu(true);
     }
   }, [scene]);
-
-  const SceneMenu = () => (
+  return (
     <div
       className={
         "flex gap-2 absolute bottom-0 rounded left-1/2 translate-x-[-50%] " +
@@ -84,6 +86,12 @@ export default function Landing() {
       ))}
     </div>
   );
+};
+
+export default function Landing({ location }) {
+  const [scene, setScene] = useState(
+    SCENES[location.hash.replace("#", "").toUpperCase()] || SCENES.NOMANSSKY
+  );
 
   return (
     <div className="absolute inset-0 overflow-hidden bg-black">
@@ -92,10 +100,12 @@ export default function Landing() {
           <SceneClarkMU />
         ) : scene === SCENES.GRAVITY ? (
           <GravityScene />
+        ) : scene === SCENES.NOMANSSKY ? (
+          <NoMansSkySimulator />
         ) : (
           <VortexScene />
         )}
-        <SceneMenu />
+        <SceneMenu scene={scene} setScene={setScene} />
       </div>
     </div>
   );

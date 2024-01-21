@@ -567,21 +567,14 @@ const cards = [
 ];
 
 export default function Portfolio({ location }) {
-  const [category, setCategory] = useState(PortfolioCategories.FULLSTACK);
-
-  useEffect(() => {
-    const url = new URL(location.href);
-    const p = url.searchParams.get("portfolio");
-
-    if (
-      p &&
-      Object.keys(PortfolioCategories)
-        .map((k, v) => k)
-        .includes(p)
-    ) {
-      setCategory(PortfolioCategories[p]);
+  const [category, setCategory] = useState(() => {
+    const p = location.hash.replace("#", "").toUpperCase();
+    let d = PortfolioCategories.FULLSTACK;
+    if (Object.keys(PortfolioCategories).includes(p)) {
+      d = PortfolioCategories[p];
     }
-  }, []);
+    return d;
+  });
 
   const containerRef = useRef(null);
 

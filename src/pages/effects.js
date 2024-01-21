@@ -40,7 +40,7 @@ const Shader = () => {
   }
   useEffect(init, [init]);
   useEffect(() => {
-    console.log("REINIT");
+    // console.log("REINIT");
     cancelAllAnimationFrames();
     init();
   }, [color, isDark]);

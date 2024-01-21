@@ -7,6 +7,19 @@ import Input from "./components/Input";
 import { validateNumericInput } from "./lib/validateNumericInput";
 import Button from "./components/Button";
 
+function hslToHex(h, s, l) {
+  l /= 100;
+  const a = (s * Math.min(l, 1 - l)) / 100;
+  const f = (n) => {
+    const k = (n + h / 30) % 12;
+    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color)
+      .toString(16)
+      .padStart(2, "0"); // convert to Hex and prefix "0" if needed
+  };
+  return `#${f(0)}${f(8)}${f(4)}`;
+}
+
 const randomHex = () =>
   "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0");
 
@@ -28,8 +41,8 @@ export default function Vortex(params) {
       .map((_, i) => ({
         id: Math.random(),
         i,
-        color,
-        size: [ballSize],
+        color: hslToHex(i * 3, 100, 5),
+        size: [4],
         velocity: { x: 0, y: 0, z: 0 },
         position: {
           x: i * vw * Math.sin(ij * i + ii),
@@ -186,14 +199,20 @@ export default function Vortex(params) {
       <Canvas camera={{ fov: 45, position: [-500, 50, 0] }}>
         <pointLight position={[-3, -3, -3]} decay={0} intensity={Math.PI} />
         <OrbitControls zoom0={10} />
-        {particles.map(({ id, ...p }, i) => (
-          <Fragment key={id}>
-            {lights && (
-              <ambientLight intensity={Math.PI / 2} position={p.position} />
-            )}
-            <Sphere key={id} {...p} />
-          </Fragment>
-        ))}
+        {particles.map(({ id, ...p }, i) => {
+          return (
+            <Fragment key={id}>
+              {lights && (
+                <ambientLight
+                  intensity={0.05}
+                  position={Object.keys(p.position).map((k, v) => v - 1)}
+                  // color={p.color}
+                />
+              )}
+              <Sphere {...p} />
+            </Fragment>
+          );
+        })}
       </Canvas>
       <VortexMenu />
     </div>
