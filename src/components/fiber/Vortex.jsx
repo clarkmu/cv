@@ -29,7 +29,7 @@ export default function Vortex(params) {
   const [vh, setVh] = useState(1.5);
   const [vz, setVz] = useState(0.5);
   const [ballSize, setBallSize] = useState(0.5);
-  const [lights, setLights] = useState(true);
+  const [rainbow, setRainbow] = useState(false);
 
   const ii = 0.01;
 
@@ -41,7 +41,7 @@ export default function Vortex(params) {
       .map((_, i) => ({
         id: Math.random(),
         i,
-        color: hslToHex(i * 3, 100, 5),
+        color,
         size: [4],
         velocity: { x: 0, y: 0, z: 0 },
         position: {
@@ -94,105 +94,15 @@ export default function Vortex(params) {
     setParticles((ps) => ps.map((p) => ({ ...p, size: [ballSize] })));
   }, [ballSize]);
 
-  const VortexMenu = () => (
-    <Menu>
-      <div className="text-center text-white">PRESETS</div>
-      <Button
-        onClick={() => {
-          setVw(0.5);
-          setVh(0);
-          setVz(0.5);
-          setIJ(6.3);
-        }}
-      >
-        Galactic
-      </Button>
-      <Button
-        onClick={() => {
-          setVw(0.5);
-          setVh(1.5);
-          setVz(0.5);
-          setIJ(1.6);
-        }}
-      >
-        Conical
-      </Button>
-      <Button
-        onClick={() => {
-          setVw(0.5);
-          setVh(0);
-          setVz(0.5);
-          setIJ(6);
-        }}
-      >
-        Vortex
-      </Button>
-      <Button
-        onClick={() => {
-          setVw(0.5);
-          setVh(1.5);
-          setVz(0.5);
-          setIJ(6);
-        }}
-      >
-        Reset
-      </Button>
-      <InputContainer label="C">
-        <Input
-          type="number"
-          step={0.1}
-          min={0}
-          value={ij}
-          onChange={(e) => setIJ(validateNumericInput(e))}
-        />
-      </InputContainer>
-      <InputContainer label="Width">
-        <Input
-          type="number"
-          step={0.5}
-          min={0}
-          value={vw}
-          onChange={(e) => setVw(validateNumericInput(e))}
-        />
-      </InputContainer>
-      <InputContainer label="Height">
-        <Input
-          type="number"
-          step={0.5}
-          min={0}
-          value={vh}
-          onChange={(e) => setVh(validateNumericInput(e))}
-        />
-      </InputContainer>
-      <InputContainer label="Depth">
-        <Input
-          type="number"
-          step={0.5}
-          min={0}
-          value={vz}
-          onChange={(e) => setVz(validateNumericInput(e))}
-        />
-      </InputContainer>
-      <InputContainer label="Ball Size">
-        <Input
-          type="number"
-          step={0.5}
-          min={0}
-          value={ballSize}
-          onChange={(e) => setBallSize(validateNumericInput(e))}
-        />
-      </InputContainer>
-      <InputContainer label="Well Lit">
-        <Input
-          type="checkbox"
-          step={0.5}
-          min={0}
-          checked={lights}
-          onChange={(e) => setLights(e.target.checked)}
-        />
-      </InputContainer>
-    </Menu>
-  );
+  useEffect(() => {
+    const color = randomHex();
+    setParticles((ps) =>
+      ps.map((p, i) => ({
+        ...p,
+        color: !rainbow ? color : hslToHex(i * 3, 100, 5),
+      }))
+    );
+  }, [rainbow]);
 
   return (
     <div className="bg-black w-full h-full relative">
@@ -202,19 +112,113 @@ export default function Vortex(params) {
         {particles.map(({ id, ...p }, i) => {
           return (
             <Fragment key={id}>
-              {lights && (
-                <ambientLight
-                  intensity={0.05}
-                  position={Object.keys(p.position).map((k, v) => v - 1)}
-                  // color={p.color}
-                />
-              )}
+              <ambientLight
+                intensity={0.05}
+                position={Object.keys(p.position).map((k, v) => v - 1)}
+                color="white"
+              />
               <Sphere {...p} />
             </Fragment>
           );
         })}
       </Canvas>
-      <VortexMenu />
+      <Menu>
+        <div className="text-center text-white">PRESETS</div>
+        <Button
+          onClick={() => {
+            setVw(0.5);
+            setVh(0);
+            setVz(0.5);
+            setIJ(6.3);
+          }}
+        >
+          Galactic
+        </Button>
+        <Button
+          onClick={() => {
+            setVw(0.5);
+            setVh(1.5);
+            setVz(0.5);
+            setIJ(1.6);
+          }}
+        >
+          Conical
+        </Button>
+        <Button
+          onClick={() => {
+            setVw(0.5);
+            setVh(0);
+            setVz(0.5);
+            setIJ(6);
+          }}
+        >
+          Vortex
+        </Button>
+        <Button
+          onClick={() => {
+            setVw(0.5);
+            setVh(1.5);
+            setVz(0.5);
+            setIJ(6);
+          }}
+        >
+          Reset
+        </Button>
+        <InputContainer label="C">
+          <Input
+            type="number"
+            step={0.1}
+            min={0}
+            value={ij}
+            onChange={(e) => setIJ(validateNumericInput(e))}
+          />
+        </InputContainer>
+        <InputContainer label="Width">
+          <Input
+            type="number"
+            step={0.5}
+            min={0}
+            value={vw}
+            onChange={(e) => setVw(validateNumericInput(e))}
+          />
+        </InputContainer>
+        <InputContainer label="Height">
+          <Input
+            type="number"
+            step={0.5}
+            min={0}
+            value={vh}
+            onChange={(e) => setVh(validateNumericInput(e))}
+          />
+        </InputContainer>
+        <InputContainer label="Depth">
+          <Input
+            type="number"
+            step={0.5}
+            min={0}
+            value={vz}
+            onChange={(e) => setVz(validateNumericInput(e))}
+          />
+        </InputContainer>
+        <InputContainer label="Ball Size">
+          <Input
+            type="number"
+            step={0.5}
+            min={0}
+            value={ballSize}
+            onChange={(e) => setBallSize(validateNumericInput(e))}
+          />
+        </InputContainer>
+        <InputContainer label="Rainbow">
+          <Input
+            type="checkbox"
+            step={0.5}
+            min={0}
+            checked={rainbow}
+            onChange={(e) => setRainbow(e.target.checked)}
+          />
+        </InputContainer>
+      </Menu>
     </div>
   );
 }
