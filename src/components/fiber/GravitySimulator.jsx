@@ -175,37 +175,6 @@ export default function GravitySimulator() {
     }
   }, [gravityCount, particleCount]);
 
-  const GravityMenu = () => (
-    <Menu>
-      <InputContainer label="Gravities">
-        <Input
-          type="number"
-          value={gravityCount}
-          onChange={(e) => setGravityCount(validateNumericInput(e))}
-          min={0}
-        />
-      </InputContainer>
-      <InputContainer label="Particles">
-        <Input
-          type="number"
-          value={particleCount}
-          onChange={(e) => setParticleCount(validateNumericInput(e))}
-          min={0}
-        />
-      </InputContainer>
-      <InputContainer label="Speed">
-        <Input
-          type="number"
-          value={speed}
-          onChange={(e) => setSpeed(validateNumericInput(e))}
-          min={1}
-          step={speed > 101 ? 100 : 10}
-        />
-      </InputContainer>
-      <Button onClick={() => setRegenerate(Math.random())}>Regenerate</Button>
-    </Menu>
-  );
-
   return (
     <div className="bg-black w-full h-full relative">
       <Canvas camera={{ position: [20, 0, 0] }}>
@@ -236,7 +205,34 @@ export default function GravitySimulator() {
         ))}
         <OrbitControls zoom0={10} />
       </Canvas>
-      <GravityMenu />
+      <Menu>
+        <InputContainer label="Gravities">
+          <Input
+            type="number"
+            value={gravityCount}
+            onChange={(e) => setGravityCount(validateNumericInput(e))}
+            min={0}
+          />
+        </InputContainer>
+        <InputContainer label="Particles">
+          <Input
+            type="number"
+            value={particleCount}
+            onChange={(e) => setParticleCount(validateNumericInput(e))}
+            min={0}
+          />
+        </InputContainer>
+        <InputContainer label="Speed">
+          <Input
+            type="number"
+            value={speed}
+            onChange={(e) => setSpeed(validateNumericInput(e))}
+            min={1}
+            step={speed > 101 ? 100 : 10}
+          />
+        </InputContainer>
+        <Button onClick={() => setRegenerate(Math.random())}>Regenerate</Button>
+      </Menu>
     </div>
   );
 }
