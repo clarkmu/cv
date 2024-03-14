@@ -1,12 +1,12 @@
 # Pages
 
-### /
+### [/](https://clarkmu.com)
 
 Portfolio website
 
 url can include /#frontend or /#backend to set initial portfolio selection
 
-### /fiber
+### [/fiber](https://clarkmu.com/fiber)
 
 Three.js samples
 
@@ -15,7 +15,7 @@ Vortex Simulator
 
 url can include /#gravity or /#vortex to set initial scene
 
-### /effects
+### [/effects](https://clarkmu.com/effects)
 
 visual Effects from my old Android LiveWallpaper (Clarkmu Live Wallpaper)
 
